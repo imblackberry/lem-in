@@ -17,9 +17,16 @@
 # define CHECK_THE_ROOMS 2
 # define CHECK_THE_LINKS 3
 
+typedef struct s_roomslst
+{
+	char *name;
+	int id;
+}				t_roomslst;
+
 typedef struct s_farm
 {
 	int ants;
+	t_roomslst *roomslst;
 	int rooms;
 	int start;
 	int end;

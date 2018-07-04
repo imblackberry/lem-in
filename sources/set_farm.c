@@ -28,12 +28,13 @@ t_farm	*newfarm(int ants)
 	return(farm);
 }
 
-int	number_of_ants(t_farm **farm)
+int	set_number_of_ants(t_farm **farm)
 {
 	char *line;
 
 	line = NULL;
-	get_next_line(0, &line);
+	if (get_next_line(0, &line) < 0)
+		return (-1);
 	if (check_data(CHECK_N_OF_ANTS, line) == -1)
 	{
 		ft_strdel(&line);
@@ -46,15 +47,15 @@ int	number_of_ants(t_farm **farm)
 
 int	set_the_rooms(t_farm **farm)
 {
-	int check;
 	char *line;
 
-	check = 0;
 	line = NULL;
-	get_next_line(0, &line);
+	if (get_next_line(0, &line) < 0)
+		return (-1);
 	while ((check = check_data(CHECK_THE_ROOMS, line)) != 0)
 	{
-		get_next_line(0, &line);
+		if (get_next_line(0, &line) < 0)
+			return (-1);
 		if(check == -1)
 			break ;
 	}
