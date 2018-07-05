@@ -20,9 +20,10 @@ t_farm	*newfarm(int ants)
 	if (farm != NULL)
 	{
 		farm->ants = ants;
-		farm->rooms = 0;
-		farm->start = 0;
-		farm->end = 0;
+		farm->file = NULL;
+		farm->roomslst = NULL;
+		farm->id_start = 0;
+		farm->id_end = 0;
 		farm->map = 0;
 	}
 	return(farm);
@@ -40,25 +41,53 @@ int	set_number_of_ants(t_farm **farm)
 		ft_strdel(&line);
 		return (-1);
 	}
-	*farm = newfarm(ft_atoi(line));
-	ft_strdel(&line);
+	else
+	{
+		*farm = newfarm(ft_atoi(line));
+		add_next_line_to_file((*farm)->file, line);
+	}
 	return (0);
 }
 
 int	set_the_rooms(t_farm **farm)
 {
 	char *line;
+	int id;
 
+	id = 0;
 	line = NULL;
 	if (get_next_line(0, &line) < 0)
 		return (-1);
-	while ((check = check_data(CHECK_THE_ROOMS, line)) != 0)
+	while (check_data(CHECK_THE_ROOMS, line) > 0)
 	{
+		add_each_room(&(*farm)->roomslst, line, id);
+		add_next_line_to_file((*farm)->file, line);
 		if (get_next_line(0, &line) < 0)
 			return (-1);
-		if(check == -1)
-			break ;
+		id++;
 	}
-	while ()
-	return (check);
+	ft_printf("FILE = %s\n", (*farm)->file);
+	return (1);
+}
+
+int ft_chrposition(char *str, int c)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0' && str[i] != c)
+		i++;
+	return (i);
+}
+
+void	add_each_room(t_roomslst **roomslst, char *line, int id)
+{
+	while (*roomslst != NULL && (*roomslst)->next != NULL)
+		*roomslst = (*roomslst)->next;
+	(*roomslst)->next = (t_roomslst*)malloc(sizeof(t_roomslst));
+	if (*roomslst != NULL)
+	{
+		(*roomslst)->id = id;
+		(*roomslst)->name = ft_strsub(line, 0, ft_chrposition(line, ' ') + 1);
+	}
 }
