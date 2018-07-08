@@ -12,7 +12,7 @@
 
 NAME = lem-in
 
-SRC = lem_in.c set_farm.c check_data.c
+SRC = lem_in.c set_farm.c check_data.c check_level_2.c
 
 SRCDIR = sources/
 

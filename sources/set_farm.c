@@ -11,14 +11,6 @@
 /* ************************************************************************** */
 
 #include "../headers/lem_in.h"
-void	showroomslst(t_roomslst *roomslst)
-{
-	while (roomslst != NULL)
-	{
-		ft_printf("id = %d\tname = %s\n", roomslst->id, roomslst->name);
-		roomslst = roomslst->next;
-	}
-}
 
 t_farm	*newfarm(int ants)
 {
@@ -51,6 +43,7 @@ t_roomslst *newroomslst()
 	}
 	return (roomslst);
 }
+
 int	set_number_of_ants(t_farm **farm)
 {
 	char *line;
@@ -58,7 +51,7 @@ int	set_number_of_ants(t_farm **farm)
 	line = NULL;
 	if (get_next_line(0, &line) < 0)
 		return (-1);
-	if (check_data(CHECK_N_OF_ANTS, line) == -1)
+	if (check_data(CHECK_N_OF_ANTS, line, 0) == -1)
 	{
 		ft_strdel(&line);
 		return (-1);
@@ -80,23 +73,17 @@ int	set_rooms(t_farm **farm)
 	line = NULL;
 	if (get_next_line(0, &line) < 0)
 		return (-1);
-	while (check_data(CHECK_ROOMS, line) > 0)
+	while (check_data(CHECK_ROOMS, line, 0) > 0)
 	{
 		ft_printf("line = %s\n", line);
-		add_each_room(&(*farm)->roomslst, line, id);
-
-
-		showroomslst((*farm)->roomslst);
-
-
-
-
+		if (add_each_room(&(*farm)->roomslst, line, id) < 0)
+			return (-1);
+		showroomslst((*farm)->roomslst);//DELL
 		add_next_line_to_file(&(*farm)->file, line);
 		if (get_next_line(0, &line) < 0)
 			return (-1);
 		id++;
 	}
-	// ft_printf("set_rooms FILE = %s\n", (*farm)->file);
 	return (1);
 }
 
@@ -110,7 +97,7 @@ int ft_chrposition(char *str, int c)
 	return (i);
 }
 
-void	add_each_room(t_roomslst **roomslst, char *line, int id)
+int	add_each_room(t_roomslst **roomslst, char *line, int id)
 {
 	t_roomslst *new;
 
@@ -121,9 +108,12 @@ void	add_each_room(t_roomslst **roomslst, char *line, int id)
 		new->id = id;
 		new->name = ft_strsub(line, 0, ft_chrposition(line, ' ') + 1);
 	}
+	// if (check_room_name())
+	// return (-1);
 	if (*roomslst == NULL)
 		*roomslst = new;
 	else
 		new->next = *roomslst;
 	*roomslst = new;
+	return (1);
 }

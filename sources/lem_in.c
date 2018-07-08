@@ -12,6 +12,15 @@
 
 #include "../headers/lem_in.h"
 
+void	showroomslst(t_roomslst *roomslst)
+{
+	while (roomslst != NULL)
+	{
+		ft_printf("id = %d\tname = %s\n", roomslst->id, roomslst->name);
+		roomslst = roomslst->next;
+	}
+}
+
 int		main()
 {
 	t_farm *farm;
