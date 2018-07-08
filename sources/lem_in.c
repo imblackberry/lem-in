@@ -32,7 +32,7 @@ int	read_and_set(t_farm **farm)
 {
 	if (set_number_of_ants(farm) == -1)
 		return (ANTS_ERROR);
-	if (set_the_rooms(farm) == -1)
+	if (set_rooms(farm) == -1)
 		return (ROOM_ERROR);
 	// if (set_the_links(farm) == 1)
 	// 	return (1)
@@ -52,17 +52,17 @@ void	farm_error(int error)
 	error = 0;
 }
 
-int add_next_line_to_file(char *file, char *line)
+void	add_next_line_to_file(char **file, char *line)
 {
 	char *newline;
 
 	newline = ft_strdup("\n");
-	if (file == NULL)
-		file = ft_strdup(line);
+	if (*file == NULL)
+		*file = ft_strdup(line);
 	else
-		ft_join_free(&file, line);
-	ft_printf("FILE = %s\n", file);
+		ft_join_free(file, line);
+	ft_join_free(file, newline);
+	ft_printf("FILE = %s\n", *file);
 	ft_strdel(&line);
 	ft_strdel(&newline);
-	return (0);
 }

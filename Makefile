@@ -27,7 +27,8 @@ LIBFTPRINTF = libftprintf.a
 all: $(NAME)
 
 $(NAME): $(LIBFTPRINTF) $(OBJDIR) $(OBJ)
-	gcc $(OBJ) ft_printf/libftprintf.a -o $(NAME)
+	@gcc $(OBJ) ft_printf/libftprintf.a -o $(NAME)
+	@echo project DONE
 
 $(LIBFTPRINTF):
 	@echo make ft_printf
@@ -40,7 +41,7 @@ $(OBJ): $(OBJDIR)%.o : $(SRCDIR)%.c
 	gcc $(FLAGS) -I headers/lem-in.h -c $< -o $@
 
 comp:
-	gcc -g $(FLAGS) $(addprefix $(SRCDIR), $(SRC)) ft_printf/libftprintf.a -I headers/lem-in.h
+	@gcc -g $(FLAGS) $(addprefix $(SRCDIR), $(SRC)) ft_printf/libftprintf.a -I headers/lem-in.h
 
 norm:
 	norminette -R CheckForbiddenSourceHeader
@@ -51,7 +52,6 @@ clean:
 
 fclean: clean
 	@make fclean -C ft_printf
-	@echo project DONE
 	@rm -f $(NAME)
 
 re: fclean all
