@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "headers"
+		},
+		{
+			"path": "sources"
+		},
+		{
+			"path": "ft_printf"
+		}
+	]
+}

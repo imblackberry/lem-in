@@ -12,6 +12,26 @@
 
 #include "../headers/lem_in.h"
 
+void    show_int_arr(int **arr, int size_i, int size_j)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (i < size_i)
+    {
+        j = 0;
+        ft_printf("arr[%d]", i);
+        while (j < size_j)
+        {
+            ft_printf("\t|%d|", arr[i][j]);
+            j++;
+        }
+        ft_printf("\n");
+        i++;
+    }
+}
 void	showroomslst(t_roomslst *roomslst)
 {
 	while (roomslst != NULL)
@@ -39,12 +59,14 @@ int		main()
 
 int	read_and_set(t_farm **farm)
 {
+    char *after_rooms_line;
+
 	if (set_number_of_ants(farm) == -1)
 		return (ANTS_ERROR);
-	if (set_rooms(farm) == -1)
+	if ((after_rooms_line = set_rooms(farm)) == NULL)
 		return (ROOM_ERROR);
-	// if (set_the_links(farm) == 1)
-	// 	return (1)
+	if (set_links(farm, after_rooms_line) == 1)
+		return (LINK_ERROR);
 	return (0);
 }
 
@@ -59,19 +81,4 @@ void	farm_error(int error)
 {
 	ft_printf("ERROR\n");
 	error = 0;
-}
-
-void	add_next_line_to_file(char **file, char *line)
-{
-	char *newline;
-
-	newline = ft_strdup("\n");
-	if (*file == NULL)
-		*file = ft_strdup(line);
-	else
-		ft_join_free(file, line);
-	ft_join_free(file, newline);
-	ft_printf("FILE = %s\n", *file);
-	ft_strdel(&line);
-	ft_strdel(&newline);
 }

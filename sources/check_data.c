@@ -12,7 +12,7 @@
 
 #include "../headers/lem_in.h"
 
-int		check_data(int n, char *line, t_roomslst *roomslst)
+int		check_data(int n, char *line)
 {
 	int ret;
 
@@ -27,7 +27,12 @@ int		check_data(int n, char *line, t_roomslst *roomslst)
 		ret = check_links(line);
 	else
 		ret = -1;
-	ft_printf("\033[32;1mNORM\n\x1B[0m");
+    
+
+    if (ret > 0)
+	    ft_printf("\033[32;1mNORM\n\x1B[0m");
+    else
+	    ft_printf("\033[34;1m%s\n\x1B[0m", line);
 	return (ret);
 }
 
@@ -38,8 +43,8 @@ int		check_number_of_ants(char *line)
 	i = 0;
 	while (ft_isdigit(line[i]) != 0)
 		i++;
-	if (line[i] == '\0')
-		return (0);
+	if (line[i] == '\0' && ft_atoi(line) > 0)
+		return (1);
 	else
 		return (-1);
 }
@@ -60,38 +65,22 @@ int check_rooms(char *line)
 	return (1);
 }
 /* ************************************************************************** */
-int check_links(char *line, t_roomslst *roomslst)
+int check_links(char *line)
 {
 	int i;
+    int hyphen;
 
 	i = 0;
-	i = after_existing_room(line, roomslst);
-	if (i > 1 && line[i] == '-')
-		i++;
-	else
-		return (-1);
-	line += i;
-	i = after_existing_room(line, roomslst);
-	if (i > 1 && line[i] == '\0')
-		return (1);
-	return (-1);
-}
-
-int	after_existing_room(char *line, t_roomslst *roomslst)
-{
-	char *line_name;
-	int i;
-
-	i = 0;
-	i = ft_chrposition(line, '-');
-	line_name = ft_strsub(line, 0, i);
-	while (roomslst != NULL && ft_strcmp(roomslst->name, line_name) != 0)
-		roomslst = roomslst->next;
-	if (roomslst == NULL)
-	{
-		ft_strdel(&line_name);
-		return (1);
-	}
-	ft_strdel(&line_name);
-	return (-1);
+    hyphen = 0;
+    while (line[i])
+    {
+        if (line[i] == '-')
+            hyphen++;
+        if (hyphen > 1)
+            return (-1);
+        i++;
+    }
+    if (hyphen == 1)
+    	return (1);
+    return (0);
 }

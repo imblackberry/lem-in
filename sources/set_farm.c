@@ -12,38 +12,6 @@
 
 #include "../headers/lem_in.h"
 
-t_farm	*newfarm(int ants)
-{
-	t_farm	*farm;
-
-	farm = (t_farm*)malloc(sizeof(t_farm));
-	if (farm != NULL)
-	{
-		farm->ants = ants;
-		farm->file = NULL;
-		farm->roomslst = NULL;
-		farm->id_start = 0;
-		farm->id_end = 0;
-		farm->map = 0;
-	}
-	return(farm);
-}
-
-t_roomslst *newroomslst()
-{
-	t_roomslst *roomslst;
-
-	roomslst = NULL;
-	roomslst = (t_roomslst*)malloc(sizeof(t_roomslst));
-	if (roomslst != NULL)
-	{
-		roomslst->id = 0;
-		roomslst->name = NULL;
-		roomslst->next = NULL;
-	}
-	return (roomslst);
-}
-
 int	set_number_of_ants(t_farm **farm)
 {
 	char *line;
@@ -51,7 +19,7 @@ int	set_number_of_ants(t_farm **farm)
 	line = NULL;
 	if (get_next_line(0, &line) < 0)
 		return (-1);
-	if (check_data(CHECK_N_OF_ANTS, line, 0) == -1)
+	if (check_data(CHECK_N_OF_ANTS, line) == -1)
 	{
 		ft_strdel(&line);
 		return (-1);
@@ -64,27 +32,40 @@ int	set_number_of_ants(t_farm **farm)
 	return (0);
 }
 
-int	set_rooms(t_farm **farm)
+char	*set_rooms(t_farm **farm)
 {
 	char *line;
 	int id;
+    int check;
 
-	id = 0;
+	id = 1;
 	line = NULL;
 	if (get_next_line(0, &line) < 0)
-		return (-1);
-	while (check_data(CHECK_ROOMS, line, 0) > 0)
+		return NULL;
+	while ((check = check_data(CHECK_ROOMS, line)) > 0)
 	{
-		ft_printf("line = %s\n", line);
+        if (check > 1)
+            set_start_or_end_room(check, farm, id);
 		if (add_each_room(&(*farm)->roomslst, line, id) < 0)
-			return (-1);
+			return NULL;
 		showroomslst((*farm)->roomslst);//DELL
 		add_next_line_to_file(&(*farm)->file, line);
 		if (get_next_line(0, &line) < 0)
-			return (-1);
+			return NULL;
 		id++;
 	}
-	return (1);
+    if (check_links(line) != 0)
+        return (line);
+    ft_strdel(&line);
+	return NULL;
+}
+
+void    set_start_or_end_room(int check, t_farm **farm, int id)
+{
+    if (check == START_ROOM)
+        (*farm)->id_start = id;
+    else
+        (*farm)->id_end = id;
 }
 
 int ft_chrposition(char *str, int c)
@@ -97,23 +78,23 @@ int ft_chrposition(char *str, int c)
 	return (i);
 }
 
-int	add_each_room(t_roomslst **roomslst, char *line, int id)
+int     set_links(t_farm **farm, char *line)
 {
-	t_roomslst *new;
+    int size_map;
 
-	new = NULL;
-	new = newroomslst();
-	if (new != NULL)
-	{
-		new->id = id;
-		new->name = ft_strsub(line, 0, ft_chrposition(line, ' ') + 1);
-	}
-	// if (check_room_name())
-	// return (-1);
-	if (*roomslst == NULL)
-		*roomslst = new;
-	else
-		new->next = *roomslst;
-	*roomslst = new;
-	return (1);
+    size_map = (*farm)->roomslst->id;
+    (*farm)->map = ft_new_double_int_arr(size_map, size_map, 0);
+    while (check_links(line) > 0)
+    {
+        ft_printf ("IN CIRCLE Line = [%s]\n", line);
+        (*farm)->map = add_link_to_map((*farm)->map, (*farm)->roomslst, line);
+        if ((*farm)->map == NULL)
+            break ;
+        show_int_arr((*farm)->map, size_map, size_map);
+        add_next_line_to_file(&(*farm)->file, line);
+        if (get_next_line(0, &line) < 0)
+		    return (-1);   
+    }
+    ft_strdel(&line);
+    return (1);
 }
