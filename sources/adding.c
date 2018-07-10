@@ -30,7 +30,8 @@ void	add_next_line_to_file(char **file, char *line)
 		ft_join_free(file, line);
 	ft_join_free(file, newline);
 	ft_printf("FILE = %s\n", *file);
-	ft_strdel(&line);
+    if (line != NULL)
+        free(line);
 	ft_strdel(&newline);
 }
 

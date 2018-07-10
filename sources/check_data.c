@@ -56,13 +56,13 @@ int check_rooms(char *line)
 
 	ret = 0;
 	i = 0;
-	if (check_start_or_end_room(&line) < 0)
+	if ((ret = check_start_or_end_room(&line)) < 0)
 		return (-1);
 	if ((i = check_rooms_name(line)) < 0)
 		return (-1);
 	if (check_rooms_coordinate(line + i) < 0)
 		return (-1);
-	return (1);
+	return (ret);
 }
 /* ************************************************************************** */
 int check_links(char *line)
