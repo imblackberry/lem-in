@@ -67,20 +67,10 @@ int check_rooms(char *line)
 /* ************************************************************************** */
 int check_links(char *line)
 {
-	int i;
-    int hyphen;
+    int i;
 
-	i = 0;
-    hyphen = 0;
-    while (line[i])
-    {
-        if (line[i] == '-')
-            hyphen++;
-        if (hyphen > 1)
-            return (-1);
-        i++;
-    }
-    if (hyphen == 1)
-    	return (1);
-    return (0);
+    i = ft_chrposition(line, '-');
+    if (line[i] == '\0')
+        return (-1);
+    return (1);
 }

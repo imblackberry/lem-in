@@ -49,21 +49,54 @@ int check_rooms_name(char *line)
 	while (line[i] != ' ')
 		i++;
 	i++;
-	return (i > 1 ? i : -1);
+	return (i > 0 ? i : -1);
 }
 
 int check_start_or_end_room(char **line)
 {
 	int ret;
 
-	ret = (ft_strcmp(*line, "##start") ? 0 : START_ROOM);
-	if (ret == 0)
-		ret = (ft_strcmp(*line, "##end") ? 0 : END_ROOM);
-	if (ret != 0)
+	ret = (ft_strcmp(*line, "##start") ? 1 : START_ROOM);
+	if (ret == 1)
+		ret = (ft_strcmp(*line, "##end") ? 1 : END_ROOM);
+	if (ret != 1)
 	{
 		ft_strdel(line);
 		if (get_next_line(0, line) < 0)
 			return (-1);
 	}
 	return (ret);
+}
+
+int *check_exsisting_two_rooms_id(char *line, t_roomslst *roomslst)
+{
+    int len_name;
+    t_roomslst *room1;
+    t_roomslst *room2;
+
+    if ((room1 = search_room_in_link(line, roomslst)) != NULL)
+    {
+        
+        len_name = strlen(room1->name);
+        if (line[len_name] == '-')
+        {
+            line += len_name + 1;
+            room2 = search_room_in_link(line, roomslst);
+            len_name = strlen(room2->name);
+            if (line[len_name] == '\0')
+                return (two_link_id(room1->id, room2->id));
+        }
+    }
+    return (NULL);
+}
+
+t_roomslst *search_room_in_link(char *line, t_roomslst *roomslst)
+{
+    while (roomslst != NULL)
+    {
+        if (strncmp(line, roomslst->name, strlen(roomslst->name)) == 0)
+            return (roomslst);
+        roomslst = roomslst->next;
+    }
+    return (NULL);
 }

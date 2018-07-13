@@ -59,12 +59,15 @@ int     ft_chrposition(char *str, int c);
 int     check_start_or_end_room(char **line);
 int     check_rooms_name(char *line);
 int     check_rooms_coordinate(char *line);
+int *check_exsisting_two_rooms_id(char *line, t_roomslst *roomslst);
+t_roomslst *search_room_in_link(char *line, t_roomslst *roomslst);
 
 // check_data.c
 int		check_data(int n, char *line);
 int		check_number_of_ants(char *line);
 int     check_rooms(char *line);
 int     check_links(char *line);
+
 
 // new_structs
 t_farm	*newfarm(int ants);
@@ -73,7 +76,7 @@ t_roomslst *newroomslst();
 // adding.c
 int     add_each_room(t_roomslst **roomslst, char *line, int id);
 void	add_next_line_to_file(char **file, char *line);
-int search_room_id(t_roomslst *roomslst, char *name);
-int **add_link_to_map(int **map, t_roomslst *roomslst, char *line);
+int **add_link_to_the_map(int **map, int *two_link_id);
+int *two_link_id(int a, int b);
 
 #endif

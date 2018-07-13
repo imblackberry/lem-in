@@ -68,33 +68,28 @@ void    set_start_or_end_room(int check, t_farm **farm, int id)
         (*farm)->id_end = id;
 }
 
-int ft_chrposition(char *str, int c)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0' && str[i] != c)
-		i++;
-	return (i);
-}
 
 int     set_links(t_farm **farm, char *line)
 {
     int size_map;
+    int *two_link_id;
 
     size_map = (*farm)->roomslst->id;
     (*farm)->map = ft_new_double_int_arr(size_map, size_map, 0);
     while (check_links(line) > 0)
     {
         ft_printf ("IN CIRCLE Line = [%s]\n", line);
-        (*farm)->map = add_link_to_map((*farm)->map, (*farm)->roomslst, line);
-        if ((*farm)->map == NULL)
+        two_link_id = check_exsisting_two_rooms_id(line, (*farm)->roomslst);
+        if (two_link_id == NULL)
             break ;
+    ft_printf ("HERE\n");
+        (*farm)->map = add_link_to_the_map((*farm)->map, two_link_id);
+        free(two_link_id);  //HEE
         show_int_arr((*farm)->map, size_map, size_map);
         add_next_line_to_file(&(*farm)->file, line);
         if (get_next_line(0, &line) < 0)
 		    return (-1);   
     }
     ft_strdel(&line);
-    return (1);
+    return (0);
 }
