@@ -55,8 +55,7 @@ void free_roomslst(t_roomslst **roomslst);
 int     set_number_of_ants(t_farm **farm);
 char    *set_rooms(t_farm **farm);
 int     set_links(t_farm **farm, char *line);
-void    set_start_or_end_room(int check, t_farm **farm, int id);
-
+void    set_start_or_end_room(int check, t_farm **farm, int id, char **line);
 // check_level_2.c 
 int     check_start_or_end_room(char **line);
 int     check_rooms_name(char *line);

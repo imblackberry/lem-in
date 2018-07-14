@@ -59,12 +59,6 @@ int check_start_or_end_room(char **line)
 	ret = (ft_strcmp(*line, "##start") ? 1 : START_ROOM);
 	if (ret == 1)
 		ret = (ft_strcmp(*line, "##end") ? 1 : END_ROOM);
-	if (ret != 1)
-	{
-		ft_strdel(line);
-		if (get_next_line(0, line) < 0)
-			return (-1);
-	}
 	return (ret);
 }
 

@@ -1,6 +1,5 @@
 1
 ##start
-##vika
 B-B 8 0
 ##end
 A-A 5 0

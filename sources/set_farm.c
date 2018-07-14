@@ -52,7 +52,7 @@ char	*set_rooms(t_farm **farm)
 	while ((check = check_data(CHECK_ROOMS, line)) > 0)
 	{
         if (check > 1)
-            set_start_or_end_room(check, farm, id);
+            set_start_or_end_room(check, farm, id, &line);
 		if (add_each_room(&(*farm)->roomslst, line, id) < 0)
 			return NULL;
 		showroomslst((*farm)->roomslst);//DELL
@@ -67,12 +67,22 @@ char	*set_rooms(t_farm **farm)
 	return NULL;
 }
 
-void    set_start_or_end_room(int check, t_farm **farm, int id)
+void    set_start_or_end_room(int check, t_farm **farm, int id, char **line)
 {
+	ft_strdel(line);
+	if (get_next_line(0, line) < 0)
+		return ;
     if (check == START_ROOM)
+	{
+		add_next_line_to_file(&(*farm)->file, "##start");
         (*farm)->id_start = id;
+	}
     else
+	{
+		add_next_line_to_file(&(*farm)->file, "##end");
         (*farm)->id_end = id;
+	}
+	
 }
 
 
