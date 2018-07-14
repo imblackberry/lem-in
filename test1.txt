@@ -1,10 +1,11 @@
 1
 ##start
-B 8 0
+##vika
+B-B 8 0
 ##end
-A 5 0
+A-A 5 0
 C 9 0
 D 13 0
-A-C
+A-A-B-B
 C-D
-D-B
+D-B-B

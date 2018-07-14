@@ -53,7 +53,8 @@ int		main()
 		return (0);
 	}
 	// analize(farm);
-	// free_farm(&farm);
+	free_farm(farm);
+	// system("leaks lem-in");
 	return (0);
 }
 
@@ -61,6 +62,7 @@ int	read_and_set(t_farm **farm)
 {
     char *after_rooms_line;
 
+	*farm = newfarm();
 	if (set_number_of_ants(farm) == -1)
 		return (ANTS_ERROR);
 	if ((after_rooms_line = set_rooms(farm)) == NULL)
@@ -68,13 +70,6 @@ int	read_and_set(t_farm **farm)
 	if (set_links(farm, after_rooms_line) == 1)
 		return (LINK_ERROR);
 	return (0);
-}
-
-void	free_farm(t_farm **farm)
-{
-	if (*farm == NULL || farm == NULL)
-		return ;
-	free(*farm);
 }
 
 void	farm_error(int error)

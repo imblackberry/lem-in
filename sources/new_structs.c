@@ -1,13 +1,13 @@
 #include "../headers/lem_in.h"
 
-t_farm	*newfarm(int ants)
+t_farm	*newfarm(void)
 {
 	t_farm	*farm;
 
 	farm = (t_farm*)malloc(sizeof(t_farm));
 	if (farm != NULL)
 	{
-		farm->ants = ants;
+		farm->ants = 0;
 		farm->file = NULL;
 		farm->roomslst = NULL;
 		farm->id_start = 0;
@@ -17,7 +17,7 @@ t_farm	*newfarm(int ants)
 	return(farm);
 }
 
-t_roomslst *newroomslst()
+t_roomslst *newroomslst(void)
 {
 	t_roomslst *roomslst;
 

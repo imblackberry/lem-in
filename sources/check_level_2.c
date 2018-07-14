@@ -76,13 +76,14 @@ int *check_exsisting_two_rooms_id(char *line, t_roomslst *roomslst)
 
     if ((room1 = search_room_in_link(line, roomslst)) != NULL)
     {
-        
-        len_name = strlen(room1->name);
+        len_name = ft_strlen(room1->name);
         if (line[len_name] == '-')
         {
             line += len_name + 1;
             room2 = search_room_in_link(line, roomslst);
-            len_name = strlen(room2->name);
+			if (room2 == NULL)
+				return (NULL);
+            len_name = ft_strlen(room2->name);
             if (line[len_name] == '\0')
                 return (two_link_id(room1->id, room2->id));
         }
@@ -94,7 +95,7 @@ t_roomslst *search_room_in_link(char *line, t_roomslst *roomslst)
 {
     while (roomslst != NULL)
     {
-        if (strncmp(line, roomslst->name, strlen(roomslst->name)) == 0)
+        if (ft_strncmp(line, roomslst->name, ft_strlen(roomslst->name)) == 0)
             return (roomslst);
         roomslst = roomslst->next;
     }

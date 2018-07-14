@@ -44,16 +44,18 @@ void	showroomslst(t_roomslst *roomslst); //DELLLLLLL
 void    show_int_arr(int **arr, int size_i, int size_j);//DELL
 // lem_in.c
 int     read_and_set(t_farm **farm);
-void	free_farm(t_farm **farm);
 void	farm_error();
 
+// free_farm.c 
+
+void	free_farm(t_farm *farm);
+void free_roomslst(t_roomslst **roomslst);
 
 // set_farm.c 
 int     set_number_of_ants(t_farm **farm);
 char    *set_rooms(t_farm **farm);
 int     set_links(t_farm **farm, char *line);
 void    set_start_or_end_room(int check, t_farm **farm, int id);
-int     ft_chrposition(char *str, int c);
 
 // check_level_2.c 
 int     check_start_or_end_room(char **line);
@@ -70,7 +72,7 @@ int     check_links(char *line);
 
 
 // new_structs
-t_farm	*newfarm(int ants);
+t_farm	*newfarm(void);
 t_roomslst *newroomslst();
 
 // adding.c

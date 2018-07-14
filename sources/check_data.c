@@ -17,7 +17,7 @@ int		check_data(int n, char *line)
 	int ret;
 
 	ret = 0;
-	if (line[0] == '#' && ft_strcmp(line, "##start") == 0 && ft_strcmp(line, "##end") == 0)
+	if (line[0] == '#' && ft_strcmp(line, "##start") != 0 && ft_strcmp(line, "##end") != 0)
 		ret = 1;
 	else if (n == CHECK_N_OF_ANTS)
 		ret = check_number_of_ants(line);
@@ -28,11 +28,11 @@ int		check_data(int n, char *line)
 	else
 		ret = -1;
     
-
+ft_printf("line = [%s]\n", line);
     if (ret > 0)
 	    ft_printf("\033[32;1mNORM\n\x1B[0m");
     else
-	    ft_printf("\033[34;1m%s\n\x1B[0m", line);
+	    ft_printf("\033[31;1m%s\n\x1B[0m", line);
 	return (ret);
 }
 
@@ -43,10 +43,10 @@ int		check_number_of_ants(char *line)
 	i = 0;
 	while (ft_isdigit(line[i]) != 0)
 		i++;
+	ft_printf("ANTS LAST POSITION = %d\n", i); 
 	if (line[i] == '\0' && ft_atoi(line) > 0)
 		return (1);
-	else
-		return (-1);
+	return (-1);
 }
 
 int check_rooms(char *line)
