@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vblokha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/14 18:47:30 by vblokha           #+#    #+#             */
-/*   Updated: 2018/07/14 18:47:31 by vblokha          ###   ########.fr       */
+/*   Created: 2018/07/18 19:52:14 by vblokha           #+#    #+#             */
+/*   Updated: 2018/07/18 19:52:16 by vblokha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_farm(t_farm *farm)
 	free(farm);
 }
 
-void free_roomslst(t_roomslst **roomslst)
+void	free_roomslst(t_roomslst **roomslst)
 {
 	t_roomslst *tmp;
 

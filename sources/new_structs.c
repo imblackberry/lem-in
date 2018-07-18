@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   new_structs.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vblokha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/18 19:52:53 by vblokha           #+#    #+#             */
+/*   Updated: 2018/07/18 19:52:56 by vblokha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/lem_in.h"
 
-t_farm	*newfarm(void)
+t_farm		*newfarm(void)
 {
 	t_farm	*farm;
 
@@ -14,10 +26,10 @@ t_farm	*newfarm(void)
 		farm->id_end = 0;
 		farm->map = 0;
 	}
-	return(farm);
+	return (farm);
 }
 
-t_roomslst *newroomslst(void)
+t_roomslst	*newroomslst(void)
 {
 	t_roomslst *roomslst;
 

@@ -1,10 +1,14 @@
 1
+#3LOL
 ##start
-B-B 8 0
+B 8 0
 ##end
-A-A 5 0
+A 5 0
 C 9 0
 D 13 0
-A-A-B-B
+A-B
+#2LOL
 C-D
-D-B-B
+D-B
+
+
