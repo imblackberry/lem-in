@@ -23,6 +23,8 @@
 # define ROOM_ERROR -2
 # define LINK_ERROR -3
 
+
+
 typedef struct s_roomslst
 {
 	char *name;
@@ -35,7 +37,7 @@ typedef struct s_farm
 	char *file;
 	int ants;
 	t_roomslst *roomslst;
-	int n_of_rooms;
+	int n_of_rooms;/////////////
 	int id_start;
 	int id_end;
 	int **map;
@@ -84,3 +86,7 @@ int **add_link_to_the_map(int **map, int *two_link_id);
 int *two_link_id(int a, int b);
 int	free_line_and_replace_gnl(char **line);
 #endif
+
+// Problems:
+// 		comments/commands after ##start is OK
+// 		integer coordinates is OK

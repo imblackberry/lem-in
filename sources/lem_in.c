@@ -58,7 +58,7 @@ int		main()
 	show_int_arr(farm->map, farm->roomslst->id, farm->roomslst->id);
 	ft_printf("\033[0;33mSTART ROOM id = [%d]\n", farm->id_start);
 	ft_printf("END ROOM id = [%d]\n\033[0m", farm->id_end);	
-	analize(&farm);
+	// analize(&farm);
 	free_farm(farm);
 	// system("leaks lem-in");
 	return (0);
@@ -78,10 +78,10 @@ int	read_and_set(t_farm **farm)
 	return (0);
 }
 
-void	analize(t_farm **farm)
-{
+// void	analize(t_farm **farm)
+// {
 	
-}
+// }
 
 void	farm_error(int error)
 {

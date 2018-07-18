@@ -1,6 +1,6 @@
 1
-#3LOL
 ##start
+##3LOL
 B 8 0
 ##end
 A 5 0
