@@ -32,6 +32,7 @@ void	show_int_arr(int **arr, int size_i, int size_j)
 		ft_printf("\n\033[0m");
 		i++;
 	}
+	ft_printf("___________________________________________________________________________________________________________________________________\n");
 }
 
 void	showroomslst(t_roomslst *roomslst)
@@ -54,11 +55,23 @@ int		main()
 		farm_error(error);
 		return (0);
 	}
+
+
+
+
+	ft_putstr(farm->file);
 	showroomslst(farm->roomslst);
 	show_int_arr(farm->map, farm->roomslst->id, farm->roomslst->id);
 	ft_printf("\033[0;33mSTART ROOM id = [%d]\n", farm->id_start);
 	ft_printf("END ROOM id = [%d]\n\033[0m", farm->id_end);	
-	// analize(&farm);
+
+
+
+
+
+
+	if ((farm->top_ways = analize(farm)) == NULL)
+		farm_error(error);
 	free_farm(farm);
 	// system("leaks lem-in");
 	return (0);
@@ -73,15 +86,24 @@ int	read_and_set(t_farm **farm)
 		return (ANTS_ERROR);
 	if ((after_rooms_line = set_rooms(farm)) == NULL)
 		return (ROOM_ERROR);
-	if (set_links(farm, after_rooms_line) == 1)
+	if (set_links(farm, after_rooms_line) < 0)
 		return (LINK_ERROR);
 	return (0);
 }
 
-// void	analize(t_farm **farm)
-// {
-	
-// }
+t_way	*analize(t_farm *farm)
+{
+	t_way *all_ways;
+	t_way *top_ways;
+
+	all_ways = NULL;
+	top_ways = NULL;
+	if ((all_ways = set_all_ways(all_ways, farm)) == NULL)
+		return (NULL);
+	// top_ways = top_way();
+	top_ways = NULL;
+	return (top_ways);
+}
 
 void	farm_error(int error)
 {

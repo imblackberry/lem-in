@@ -25,6 +25,7 @@ t_farm		*newfarm(void)
 		farm->id_start = 0;
 		farm->id_end = 0;
 		farm->map = 0;
+		farm->top_ways = NULL;
 	}
 	return (farm);
 }

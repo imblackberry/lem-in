@@ -23,8 +23,6 @@
 # define ROOM_ERROR -2
 # define LINK_ERROR -3
 
-
-
 typedef struct s_roomslst
 {
 	char *name;
@@ -32,22 +30,37 @@ typedef struct s_roomslst
 	struct s_roomslst *next;
 }				t_roomslst;
 
+typedef struct s_step
+{
+	int id;
+	t_roomslst *room;
+	struct s_step *next;
+}				t_step;
+
+typedef struct s_way
+{
+	int	id;
+	t_step *step;
+	struct s_way *next;
+}				t_way;
+
 typedef struct s_farm
 {
 	char *file;
 	int ants;
 	t_roomslst *roomslst;
-	int n_of_rooms;/////////////
 	int id_start;
 	int id_end;
 	int **map;
+	t_way *top_ways;
+
 }				t_farm;
 void	showroomslst(t_roomslst *roomslst); //DELLLLLLL
 void    show_int_arr(int **arr, int size_i, int size_j);//DELL
 // lem_in.c
 int     read_and_set(t_farm **farm);
 void	farm_error();
-void	analize(t_farm **farm);
+t_way	*analize(t_farm *farm);
 
 // free_farm.c 
 
@@ -66,7 +79,7 @@ int     check_start_or_end_room(char **line);
 int     check_rooms_name(char *line);
 int     check_rooms_coordinate(char *line);
 int *check_exsisting_two_rooms_id(char *line, t_roomslst *roomslst);
-t_roomslst *search_room_in_link(char *line, t_roomslst *roomslst);
+t_roomslst *search_room_in_lst(char *line, t_roomslst *roomslst);
 
 // check_data.c
 int		check_data(int n, char *line);
@@ -85,6 +98,15 @@ void	add_next_line_to_file(char **file, char *line);
 int **add_link_to_the_map(int **map, int *two_link_id);
 int *two_link_id(int a, int b);
 int	free_line_and_replace_gnl(char **line);
+
+// analize.c
+t_way	*set_all_ways(t_way *all_ways, t_farm *farm);
+
+
+// searching.c
+
+t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id);
+
 #endif
 
 // Problems:
