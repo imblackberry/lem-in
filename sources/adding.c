@@ -19,7 +19,7 @@ int		add_each_room(t_roomslst **roomslst, char *line, int id)
 
 	new = NULL;
 	name = ft_strsub(line, 0, ft_chrposition(line, ' '));
-	if (search_room_in_lst(name, *roomslst) != NULL)
+	if (room_exist(name, *roomslst) == 1)
 		return (-1);
 	new = newroomslst();
 	if (new != NULL)

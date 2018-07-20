@@ -23,6 +23,8 @@
 # define ROOM_ERROR -2
 # define LINK_ERROR -3
 
+# define LINK 1
+
 typedef struct s_roomslst
 {
 	char *name;
@@ -32,7 +34,6 @@ typedef struct s_roomslst
 
 typedef struct s_step
 {
-	int id;
 	t_roomslst *room;
 	struct s_step *next;
 }				t_step;
@@ -60,7 +61,7 @@ void    show_int_arr(int **arr, int size_i, int size_j);//DELL
 // lem_in.c
 int     read_and_set(t_farm **farm);
 void	farm_error();
-t_way	*analize(t_farm *farm);
+t_way	*analyze(t_farm *farm);
 
 // free_farm.c 
 
@@ -99,14 +100,15 @@ int **add_link_to_the_map(int **map, int *two_link_id);
 int *two_link_id(int a, int b);
 int	free_line_and_replace_gnl(char **line);
 
-// analize.c
+// analyze.c
 t_way	*set_all_ways(t_way *all_ways, t_farm *farm);
 
 
 // searching.c
 
 t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id);
-
+int room_exist(char *name, t_roomslst *roomslst);
+t_way	*search_and_add_way(int **map, int start, int end, int nodes);
 #endif
 
 // Problems:

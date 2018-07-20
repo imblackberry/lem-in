@@ -12,7 +12,7 @@
 
 NAME = lem-in
 
-SRC = lem_in.c set_farm.c check_data.c check_level_2.c new_structs.c adding.c free_farm.c analize.c searching.c
+SRC = lem_in.c set_farm.c check_data.c check_level_2.c new_structs.c adding.c free_farm.c analyze.c searching.c
 
 SRCDIR = sources/
 

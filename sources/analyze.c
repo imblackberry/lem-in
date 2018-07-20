@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   analize.c                                          :+:      :+:    :+:   */
+/*   analyze.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vblokha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,17 +14,11 @@
 
 t_way	*set_all_ways(t_way *all_ways, t_farm *farm)
 {
-	int	**map;
-	int	i;
-	int	n_of_nodes;
+	int i;
 
 	i = 0;
-	map = farm->map;
-	n_of_nodes = farm->roomslst->id;
-	while (i < n_of_nodes)
-	{
-
-		i++;
-	}
+	all_ways = search_and_add_way(farm->map, farm->id_start - 1,
+			farm->id_end - 1, farm->roomslst->id);
 	return (all_ways);
 }
+

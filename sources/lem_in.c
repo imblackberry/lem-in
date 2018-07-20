@@ -20,19 +20,26 @@ void	show_int_arr(int **arr, int size_i, int size_j)
 	i = 0;
 	j = 0;
 	arr[1] = arr[1];
+	ft_printf("\033[0;32m\t");
+	while (j < size_j)
+	{
+		ft_printf("id[%d]\t", j + 1);
+		j++;
+	}
+	ft_printf("\n");
 	while (i < size_i)
 	{
 		j = 0;
-		ft_printf("\033[0;32marr[%d]", i);
+		ft_printf("id[%d]", i + 1);
 		while (j < size_j)
 		{
 			ft_printf("\t|%d|", arr[i][j]);
 			j++;
 		}
-		ft_printf("\n\033[0m");
+		ft_printf("\n");
 		i++;
 	}
-	ft_printf("___________________________________________________________________________________________________________________________________\n");
+	ft_printf("___________________________________________________________________________________________________________________________________\n\033[0m");
 }
 
 void	showroomslst(t_roomslst *roomslst)
@@ -70,7 +77,7 @@ int		main()
 
 
 
-	if ((farm->top_ways = analize(farm)) == NULL)
+	if ((farm->top_ways = analyze(farm)) == NULL)
 		farm_error(error);
 	free_farm(farm);
 	// system("leaks lem-in");
@@ -91,7 +98,7 @@ int	read_and_set(t_farm **farm)
 	return (0);
 }
 
-t_way	*analize(t_farm *farm)
+t_way	*analyze(t_farm *farm)
 {
 	t_way *all_ways;
 	t_way *top_ways;
