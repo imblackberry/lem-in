@@ -17,6 +17,8 @@ void	show_int_arr(int **arr, int size_i, int size_j)
 	int i;
 	int j;
 
+	size_i++;
+	size_j++;
 	i = 0;
 	j = 0;
 	arr[1] = arr[1];
@@ -93,6 +95,7 @@ int	read_and_set(t_farm **farm)
 		return (ANTS_ERROR);
 	if ((after_rooms_line = set_rooms(farm)) == NULL)
 		return (ROOM_ERROR);
+	(*farm)->nodes = (*farm)->roomslst->id;
 	if (set_links(farm, after_rooms_line) < 0)
 		return (LINK_ERROR);
 	return (0);
@@ -103,12 +106,10 @@ t_way	*analyze(t_farm *farm)
 	t_way *all_ways;
 	t_way *top_ways;
 
-	all_ways = NULL;
 	top_ways = NULL;
 	if ((all_ways = set_all_ways(all_ways, farm)) == NULL)
 		return (NULL);
-	// top_ways = top_way();
-	top_ways = NULL;
+	// top_ways = top_way(all_ways);
 	return (top_ways);
 }
 

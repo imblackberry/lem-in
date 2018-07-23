@@ -78,14 +78,13 @@ int		set_start_or_end_room(int check, t_farm **farm, int id)
 
 int		set_links(t_farm **farm, char *line)
 {
-	int size_map;
 	int *two_link_id;
 	int check;
 
 	if ((*farm)->roomslst == NULL)
 		return (-1);
-	size_map = (*farm)->roomslst->id;
-	(*farm)->map = ft_new_double_int_arr(size_map, size_map, 0);
+	(*farm)->map = ft_new_double_int_arr((*farm)->nodes + 1, (*farm)->nodes + 1, 0);
+	set_end_of_map((*farm)->map, (*farm)->nodes);
 	while ((check = check_data(CHECK_LINKS, line)) >= 0)
 	{
 		add_next_line_to_file(&(*farm)->file, line);
@@ -98,7 +97,7 @@ int		set_links(t_farm **farm, char *line)
 			free(two_link_id);
 		}
 		free_line_and_replace_gnl(&line);
-		// show_int_arr((*farm)->map, (*farm)->roomslst->id, (*farm)->roomslst->id);
+		show_int_arr((*farm)->map, (*farm)->roomslst->id, (*farm)->roomslst->id);
 	}
 	ft_strdel(&line);
 	return (0);

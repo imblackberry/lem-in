@@ -12,7 +12,7 @@
 
 NAME = lem-in
 
-SRC = lem_in.c set_farm.c check_data.c check_level_2.c new_structs.c adding.c free_farm.c analyze.c searching.c
+SRC = lem_in.c set_farm.c check_data.c check_level_2.c new_structs.c adding.c free_farm.c analyze.c searching.c adding_in_lst.c
 
 SRCDIR = sources/
 
@@ -41,7 +41,7 @@ $(OBJ): $(OBJDIR)%.o : $(SRCDIR)%.c
 	gcc $(FLAGS) -I headers/lem-in.h -c $< -o $@
 
 comp:
-	@gcc -g $(FLAGS) $(addprefix $(SRCDIR), $(SRC)) ft_printf/$(LIBFTPRINTF) -I headers/lem-in.h -o debug
+	@gcc -g $(FLAGS) $(addprefix $(SRCDIR), $(SRC)) ft_printf/$(LIBFTPRINTF) -I.headers/lem-in.h -o debug
 
 norm:
 	norminette -R CheckForbiddenSourceHeader

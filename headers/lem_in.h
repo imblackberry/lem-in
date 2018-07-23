@@ -34,13 +34,14 @@ typedef struct s_roomslst
 
 typedef struct s_step
 {
-	t_roomslst *room;
+	int step;
+	int	id;
 	struct s_step *next;
 }				t_step;
 
 typedef struct s_way
 {
-	int	id;
+	int	length;
 	t_step *step;
 	struct s_way *next;
 }				t_way;
@@ -52,6 +53,7 @@ typedef struct s_farm
 	t_roomslst *roomslst;
 	int id_start;
 	int id_end;
+	int nodes;
 	int **map;
 	t_way *top_ways;
 
@@ -92,6 +94,8 @@ int     check_links(char *line);
 // new_structs
 t_farm	*newfarm(void);
 t_roomslst *newroomslst();
+void	set_end_of_map(int **arr, int size);
+t_step *new_step(int room_id);
 
 // adding.c
 int     add_each_room(t_roomslst **roomslst, char *line, int id);
@@ -102,13 +106,18 @@ int	free_line_and_replace_gnl(char **line);
 
 // analyze.c
 t_way	*set_all_ways(t_way *all_ways, t_farm *farm);
+t_way	*search_and_add_way(int **map, int start, int end, int nodes);
 
 
 // searching.c
-
+t_step *search_last_step(t_step *step);
 t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id);
 int room_exist(char *name, t_roomslst *roomslst);
-t_way	*search_and_add_way(int **map, int start, int end, int nodes);
+
+// adding_in_lst.c
+void	add_way_to_start(t_way **ways, t_way *add_it);
+
+
 #endif
 
 // Problems:
