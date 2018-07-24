@@ -36,3 +36,4 @@ void	free_roomslst(t_roomslst **roomslst)
 		free(tmp);
 	}
 }
+

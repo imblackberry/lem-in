@@ -12,13 +12,6 @@
 
 #include "../headers/lem_in.h"
 
-t_step *search_last_step(t_step *step)
-{
-	while (step != NULL || step->next != NULL)
-		step = step->next;
-	return (step);
-}
-
 t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id)
 {
 	if (roomslst == NULL || id < 1)
@@ -43,3 +36,12 @@ int room_exist(char *name, t_roomslst *roomslst)
 	return (0);
 }
 
+int	room_way_length(int *room_way)
+{
+	int i;
+
+	i = 0;
+	while(room_way[i] != -1)
+		i++;
+	return (i);
+}

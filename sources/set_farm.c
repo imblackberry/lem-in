@@ -41,7 +41,7 @@ char	*set_rooms(t_farm **farm)
 	int		id;
 	int		check;
 
-	id = 1;
+	id = 0;
 	line = NULL;
 	if (get_next_line(0, &line) < 0)
 		return (NULL);
@@ -94,6 +94,7 @@ int		set_links(t_farm **farm, char *line)
 			if (two_link_id == NULL)
 				break ;
 			(*farm)->map = add_link_to_the_map((*farm)->map, two_link_id);
+	ft_printf("HEEEEEHEEE\n");
 			free(two_link_id);
 		}
 		free_line_and_replace_gnl(&line);

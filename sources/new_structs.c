@@ -59,24 +59,33 @@ void	set_end_of_map(int **arr, int size)
 	}
 }
 
-t_step *new_step(int room_id)
+int *new_room_way(int start_node, int size)
 {
-	t_step *step;
+	int *room_way;
+	int i;
 
-	step = (t_step*)malloc(sizeof(t_step));
-	if (step != NULL)
-		step->id = room_id;
-	return (step);
+	room_way = (int*)malloc(sizeof(int) * size);
+	if (room_way == NULL)
+		return (NULL);
+	room_way[0] = start_node;
+	i = 1;
+	while (i < size)
+	{
+		room_way[i] = -1;
+		i++;
+	}
+	return (room_way);
 }
 
-t_way	*new_way(t_step *step)
+t_way	*new_way(int *room_way)
 {
 	t_way *new_way;
 
 	new_way = (t_way*)malloc(sizeof(t_way));
 	if (new_way == NULL)
 		return (NULL);
-	new_way->step = step;
-	new_way->length = step_length(step);
+	new_way->room_way = room_way;
+	new_way->length = room_way_length(room_way);
+	new_way->next = NULL;
 	return (new_way);
 }

@@ -51,8 +51,8 @@ int		**add_link_to_the_map(int **map, int *two_link_id)
 	int i;
 	int j;
 
-	i = 0[two_link_id] - 1;
-	j = 1[two_link_id] - 1;
+	i = 0[two_link_id];
+	j = 1[two_link_id];
 	map[i][j] = 1;
 	map[j][i] = 1;
 	return (map);

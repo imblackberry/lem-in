@@ -12,41 +12,42 @@
 
 #include "../headers/lem_in.h"
 
-t_way	*set_all_ways(t_farm *farm)
+int	set_all_ways(t_farm *farm)
 {
-	int i;
-	t_step *current;
-	t_way *all_ways;
+	int *room_way;
 
-	i = 0;
-	current = new_step(farm->id_start);
-	add_way(&all_ways, current);
-	all_ways = search_and_add_way(farm->map,
-		farm->id_end - 1, current, all_ways);
-	return (all_ways);
+	room_way = new_room_way(farm->id_start, farm->nodes + 1);
+	// room_way[0][2]...
+	farm->all_ways = new_way(room_way);
+	search_and_add_way(farm, room_way, 1);
+	show_ways(farm->all_ways);
+	return (1);
 }
 
 // way with start!
 
-int		search_and_add_way(int **map, int end, t_step *current, t_way *ways)
+int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now)
 {
-	t_step *last_step;
 	int i;
+	int last_id;
 
-	last_step = search_last_step(current);
-	if (last_step->room->id == end)
+	last_id = room_way_now[way_length_now - 1];
+	// show_room_way(room_way_now);
+	if (last_id == farm->id_end)
 	{
-		add_way_to_start(&ways, new_way(current)); // new_way() should copy current
+		show_room_way(room_way_now);
+		// add_way_to_start(&farm->all_ways, new_way(ft_intdup(room_way_now, way_length_now)));
 		return (1);
 	}
 	i = 0;
-	while (map[last_step->room->id][i] != -1) // map should be -1 terminated
+	while (farm->map[last_id][i] != -1)
 	{
-		if (map[last_step->room->id][i] == 1)
+		if (farm->map[last_id][i] == 1 && ft_intposition(room_way_now, i, way_length_now) == -1)
 		{
-			last_step->next = new_step(i + 1); // 'i' is room id; new_step() creates step from room_id
-			search_and_add_way(map, end, current, ways);
-			free_step(last_step->next);
+			room_way_now[way_length_now] = i;
+			search_and_add_way(farm, room_way_now, way_length_now + 1);
+			room_way_now[way_length_now] = -1;
+
 		}
 		i++;
 	}
