@@ -53,12 +53,12 @@ void	showroomslst(t_roomslst *roomslst)
 	}
 }
 
-void	show_room_way(int *room_way)
+void	show_room_way(int *room_way, int room_way_length)
 {
 	int i;
 
 	i = 0;
-	while (room_way[i] >= 0)
+	while (i < room_way_length)
 	{
 		ft_printf("[%d]", room_way[i]);
 		i++;
@@ -70,8 +70,8 @@ void	show_ways(t_way *ways)
 {
 	while (ways != NULL)
 	{
-		ft_printf("ways->length = %d\n", ways->length);
-		show_room_way(ways->room_way);
+		ft_printf("length = %d\n", ways->length);
+		show_room_way(ways->room_way, ways->length);
 		ways = ways->next;
 	}
 }

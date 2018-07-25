@@ -30,7 +30,7 @@ int		main()
 
 	ft_putstr(farm->file);
 	showroomslst(farm->roomslst);
-	show_int_arr(farm->map, farm->roomslst->id, farm->roomslst->id);
+	show_int_arr(farm->map, farm->nodes, farm->nodes);
 	ft_printf("\033[0;33mSTART ROOM id = [%d]\n", farm->id_start);
 	ft_printf("END ROOM id = [%d]\n\033[0m", farm->id_end);	
 

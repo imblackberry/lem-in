@@ -14,11 +14,13 @@
 
 void	free_farm(t_farm *farm)
 {
-	ft_free_double_int_arr(&(farm->map));
-	ft_strdel(&(farm->file));
-	free_roomslst(&(farm->roomslst));
 	if (farm == NULL)
 		return ;
+	ft_strdel(&(farm->file));
+	free_roomslst(&(farm->roomslst));
+	ft_free_double_int_arr(&(farm->map));
+	free_ways(farm->all_ways);
+	farm->all_ways = NULL;
 	free(farm);
 }
 
@@ -34,6 +36,21 @@ void	free_roomslst(t_roomslst **roomslst)
 		*roomslst = (*roomslst)->next;
 		ft_strdel(&(tmp->name));
 		free(tmp);
+	}
+}
+
+void	free_ways(t_way *ways)
+{
+	t_way *tmp;
+
+	if (ways == NULL)
+		return ;
+	while (ways != NULL)
+	{
+		tmp = ways->next;
+		free(ways->room_way);
+		free(ways);
+		ways = tmp;
 	}
 }
 

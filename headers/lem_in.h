@@ -55,7 +55,7 @@ typedef struct s_farm
 }				t_farm;
 
 // show_me.c
-void	show_room_way(int *room_way);
+void	show_room_way(int *room_way, int room_way_length);
 void	showroomslst(t_roomslst *roomslst); //DELLLLLLL
 void    show_int_arr(int **arr, int size_i, int size_j);//DELL
 void	show_ways(t_way *ways);
@@ -69,7 +69,7 @@ int		analyze(t_farm *farm);
 
 void	free_farm(t_farm *farm);
 void	free_roomslst(t_roomslst **roomslst);
-
+void	free_ways(t_way *ways);
 // set_farm.c 
 int     set_number_of_ants(t_farm **farm);
 char    *set_rooms(t_farm **farm);
@@ -95,7 +95,7 @@ int     check_links(char *line);
 t_farm	*newfarm(void);
 t_roomslst *newroomslst();
 void	set_end_of_map(int **arr, int size);
-t_way	*new_way(int *room_way);
+t_way	*new_way(int *room_way, int way_length_now);
 int *new_room_way(int start_node, int size);
 // adding.c
 int     add_each_room(t_roomslst **roomslst, char *line, int id);

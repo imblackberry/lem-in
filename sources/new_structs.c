@@ -19,13 +19,14 @@ t_farm		*newfarm(void)
 	farm = (t_farm*)malloc(sizeof(t_farm));
 	if (farm != NULL)
 	{
-		farm->ants = 0;
 		farm->file = NULL;
+		farm->ants = 0;
 		farm->roomslst = NULL;
 		farm->id_start = 0;
 		farm->id_end = 0;
 		farm->nodes = 0;
 		farm->map = 0;
+		farm->all_ways = NULL;
 		farm->top_ways = NULL;
 	}
 	return (farm);
@@ -77,7 +78,7 @@ int *new_room_way(int start_node, int size)
 	return (room_way);
 }
 
-t_way	*new_way(int *room_way)
+t_way	*new_way(int *room_way, int room_way_length)
 {
 	t_way *new_way;
 
@@ -85,7 +86,7 @@ t_way	*new_way(int *room_way)
 	if (new_way == NULL)
 		return (NULL);
 	new_way->room_way = room_way;
-	new_way->length = room_way_length(room_way);
+	new_way->length = room_way_length;
 	new_way->next = NULL;
 	return (new_way);
 }
