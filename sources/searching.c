@@ -45,3 +45,10 @@ int	room_way_length(int *room_way)
 		i++;
 	return (i);
 }
+
+t_way *way_before_this_length(t_way *ways, int length)
+{
+	while (ways != NULL && ways->length < length)
+		ways = ways->next;
+	return (ways);
+}

@@ -113,9 +113,9 @@ int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now);
 t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id);
 int room_exist(char *name, t_roomslst *roomslst);
 int	room_way_length(int *room_way);
-
+t_way *way_before_this_length(t_way *ways, int length);
 // adding_in_lst.c
-void	add_way_to_start(t_way **ways, t_way *add_it);
+void	add_way_by_increasing_length(t_way **ways, t_way **add_it);
 
 
 #endif

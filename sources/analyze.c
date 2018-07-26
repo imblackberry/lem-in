@@ -18,7 +18,6 @@ int	set_all_ways(t_farm *farm)
 	// t_way *first_made;
 
 	room_way = new_room_way(farm->id_start, farm->nodes + 1);
-	show_ways(farm->all_ways);
 	// room_way[0][2]...
 	search_and_add_way(farm, room_way, 1); 
 	show_ways(farm->all_ways);
@@ -33,13 +32,14 @@ int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now)
 {
 	int i;
 	int last_id;
+	t_way *new_way_;
 
 	last_id = room_way_now[way_length_now - 1];
 	if (last_id == farm->id_end)
 	{
-		
-		// show_room_way(room_way_now);
-		add_way_to_start(&farm->all_ways, new_way(ft_intdup(room_way_now, way_length_now), way_length_now));
+		show_room_way(room_way_now, way_length_now);
+		new_way_ = new_way(ft_intdup(room_way_now, way_length_now), way_length_now);
+		add_way_by_increasing_length(&farm->all_ways, &new_way_);	
 		return (1);
 	}
 	i = 0;

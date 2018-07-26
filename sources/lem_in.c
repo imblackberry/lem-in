@@ -21,6 +21,7 @@ int		main()
 	farm = NULL;
 	if ((error = read_and_set(&farm)) < 0)
 	{
+		free_farm(farm);
 		farm_error(error);
 		return (0);
 	}
