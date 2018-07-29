@@ -70,6 +70,7 @@ void	show_ways(t_way *ways)
 {
 	while (ways != NULL)
 	{
+		ft_printf("id = %d\n", ways->id);
 		ft_printf("length = %d\n", ways->length);
 		show_room_way(ways->room_way, ways->length);
 		ways = ways->next;

@@ -114,9 +114,9 @@ t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id);
 int room_exist(char *name, t_roomslst *roomslst);
 int	room_way_length(int *room_way);
 t_way *way_before_this_length(t_way *ways, int length);
-// adding_in_lst.c
+// achange_lst.c
 void	add_way_by_increasing_length(t_way **ways, t_way **add_it);
-
+t_way	*set_ways_id(t_way *ways);
 
 #endif
 
