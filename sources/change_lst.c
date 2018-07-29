@@ -33,21 +33,20 @@ void	add_way_by_increasing_length(t_way **ways, t_way **add_it)
 	before->next->next = after;
 }
 
-t_way	*set_ways_id(t_way *ways)
+void	set_ways_id_and_n_all_ways(t_farm *farm)
 {
-	t_way *head;
+	t_way *all_ways_head;
 	int id;
 
 	id = 1;
-	if (ways == NULL)
-		return NULL;
-	head = ways;
-	ways = ways->next;
-	while (ways != NULL)
+	all_ways_head = farm->all_ways;
+	all_ways_head = all_ways_head->next;
+	while (all_ways_head != NULL)
 	{
-		ways->id = id;
+		if (all_ways_head->next == NULL)
+			farm->n_all_ways = id;
+		all_ways_head->id = id;
 		id++;
-		ways = ways->next;
+		all_ways_head = all_ways_head->next;
 	}
-	return (head);
 }

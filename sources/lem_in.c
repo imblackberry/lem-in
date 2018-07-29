@@ -64,9 +64,11 @@ int	read_and_set(t_farm **farm)
 
 int	analyze(t_farm *farm)
 {
+	int top_way;
+
 	if (set_all_ways(farm) < 0)
 		return (-1);
-	// top_ways = top_way(all_ways);
+	top_way = top_ways(farm);
 	return (1);
 }
 

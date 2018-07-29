@@ -27,6 +27,7 @@ t_farm		*newfarm(void)
 		farm->nodes = 0;
 		farm->map = 0;
 		farm->all_ways = NULL;
+		farm->n_all_ways = 0;		
 		farm->top_ways = NULL;
 	}
 	return (farm);
@@ -60,7 +61,7 @@ void	set_end_of_map(int **arr, int size)
 	}
 }
 
-int *new_room_way(int start_node, int size)
+int *new_filled_start_int_arr(int start_node, int size)
 {
 	int *room_way;
 	int i;
