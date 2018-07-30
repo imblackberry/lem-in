@@ -22,7 +22,7 @@ int		set_all_ways(t_farm *farm)
 	return (-1);
 	show_ways(farm->all_ways);
 	set_ways_id_and_n_all_ways(farm);
-	// ft_free_double_int_arr(&(farm->map));
+	ft_free_double_int_arr(&(farm->map));
 	free(room_way);
 	return (1);
 }
@@ -41,7 +41,7 @@ int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now)
 		add_way_by_increasing_length(&farm->all_ways, &new_way_);	
 		return (1);
 	}
-	i = 0;
+	i = 0;//&&
 	while (farm->map[last_id][i] != -1)
 	{
 		if (farm->map[last_id][i] == 1 && ft_intposition(room_way_now, i, way_length_now) == -1)
@@ -57,26 +57,50 @@ int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now)
 
 int top_ways(t_farm *farm)
 {
-	farm->top_id_arr = new_filled_start_int_arr(0, farm->n_all_ways + 1);
-	steps = count_steps(farm->top_id_arr);
-	search_top_ways_ids(farm, steps, 0, farm->all_ways);
+	farm->top = ft_memalloc(farm->n_all_ways + 1);
+	// farm->top_ways[0] = farm->all_ways;
+	// farm->steps = count_steps(farm->top_ways);
+	search_top(farm, farm->all_ways, 0, 0);
 	return (1);
 }
 
-int *search_top_ways_ids(t_farm *farm, int steps, int ants_already_come, t_way *way_now)
+int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int n_of_ids)
 {
-	int last_id;
-
-	if (перетин )
-		return (0);
-	if (way_now == NULL || count_steps(ants_already_come, way_now->length) > steps)
-	{
-		return (1);
-	}
+	ants_come = change_ants_come(ants_come, farm->top, n_of_ids, way_now->next);
+	if (ants_come > ants)
+		return (result); //stop
+	if (n_of_ids > тих, що були)
+		set top and go on
 	while (way_now != NULL)
 	{
-		id_arr[перед -1] = ways->id; //[1][2]
-		id_arr = search_top_ways_ids(id_arr, steps, ants_already_come, way_now->next);
+		if (no_last_way_intersec(farm->top,  way_now) == 1)
+		{
+			top[n_of_ids] = way_now; //ants already come
+			
+			if (search_top_ways_ids(farm, way_now->next, ants_come, n_of_ids + 1) == 1)
+				return (1);
+			top[n_of_ids] = NULL;
+		}
 		way_now = way_now->next;
 	}
+	return (1);
 }
+
+int	change_ants_come(int ants_come, t_way **top, int n_of_ids, t_way *way_next)
+{
+	ants_come = ants_come + (way_next->length - top[n_of_ids - 1]->length) * n_of_ids;
+}
+// ants = 7
+// [1] l = 2
+// ants_come = 3
+
+// 3 < 7 --go on
+// [1] l = 2
+// [2] l = 5
+// ants_come = 3 + (6 - 5) * 2 = 5
+
+// 5 < 7
+// [1] l = 2
+// [2] l = 5
+// [3] l = 6
+// ants_come = 5 + ()

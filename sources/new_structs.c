@@ -27,7 +27,8 @@ t_farm		*newfarm(void)
 		farm->nodes = 0;
 		farm->map = 0;
 		farm->all_ways = NULL;
-		farm->n_all_ways = 0;		
+		farm->n_all_ways = 0;
+		farm->steps = 0;
 		farm->top_ways = NULL;
 	}
 	return (farm);

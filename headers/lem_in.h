@@ -51,8 +51,8 @@ typedef struct s_farm
 	int **map;
 	t_way *all_ways;
 	int n_all_ways;
-	int *top_id_arr;
-	t_way *top_ways;
+	t_way **top;
+	int steps;
 
 }				t_farm;
 
@@ -99,6 +99,7 @@ t_roomslst *newroomslst();
 void	set_end_of_map(int **arr, int size);
 t_way	*new_way(int *room_way, int way_length_now);
 int *new_filled_start_int_arr(int start_node, int size);
+
 // adding.c
 int     add_each_room(t_roomslst **roomslst, char *line, int id);
 void	add_next_line_to_file(char **file, char *line);
@@ -109,7 +110,7 @@ int	free_line_and_replace_gnl(char **line);
 // analyze.c
 int		set_all_ways(t_farm *farm);
 int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now);
-int top_ways(t_farm *farm);
+int		top_ways(t_farm *farm);
 
 
 // searching.c
@@ -117,9 +118,15 @@ t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id);
 int room_exist(char *name, t_roomslst *roomslst);
 int	room_way_length(int *room_way);
 t_way *way_before_this_length(t_way *ways, int length);
-// change_lst.c
+t_way	*search_way_by_id(t_way *all_ways, int id);
+
+// work_with_ways.c
 void	add_way_by_increasing_length(t_way **ways, t_way **add_it);
 void	set_ways_id_and_n_all_ways(t_farm *farm);
+int	no_last_way_intersec(t_way **top, t_way *way_now);
+int room_exist_in_top(int room_id, t_way **top);
+int	room_exist_in_one_top(int room_id, t_way *one_top);
+
 
 
 #endif

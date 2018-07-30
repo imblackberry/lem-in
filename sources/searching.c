@@ -52,3 +52,14 @@ t_way *way_before_this_length(t_way *ways, int length)
 		ways = ways->next;
 	return (ways);
 }
+
+t_way	*search_way_by_id(t_way *all_ways, int id)
+{
+	while (all_ways != NULL)
+	{
+		if (all_ways->id == id)
+			return (all_ways);
+		all_ways = all_ways->next;
+	}
+	return (NULL);
+}
