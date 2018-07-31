@@ -40,6 +40,14 @@ typedef struct s_way
 	struct s_way *next;
 }				t_way;
 
+typedef struct s_top
+{
+	int steps;
+	int *ants;
+	t_way **way_arr;
+	int size;
+}				t_top;
+
 typedef struct s_farm
 {
 	char *file;
@@ -51,8 +59,10 @@ typedef struct s_farm
 	int **map;
 	t_way *all_ways;
 	int n_all_ways;
-	t_way **top;
-	int steps;
+	t_way **current_top;
+	int current_n_ids;
+	t_top *top;
+
 
 }				t_farm;
 
@@ -99,6 +109,7 @@ t_roomslst *newroomslst();
 void	set_end_of_map(int **arr, int size);
 t_way	*new_way(int *room_way, int way_length_now);
 int *new_filled_start_int_arr(int start_node, int size);
+t_top *new_top();
 
 // adding.c
 int     add_each_room(t_roomslst **roomslst, char *line, int id);
@@ -111,6 +122,8 @@ int	free_line_and_replace_gnl(char **line);
 int		set_all_ways(t_farm *farm);
 int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now);
 int		top_ways(t_farm *farm);
+int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int n_of_ids);
+int	change_ants_come(int ants_come, t_way **top, int n_of_ids, t_way *way_next);
 
 
 // searching.c

@@ -92,3 +92,17 @@ t_way	*new_way(int *room_way, int room_way_length)
 	new_way->next = NULL;
 	return (new_way);
 }
+
+t_top *new_top()
+{
+	t_top *top;
+
+	top = (t_top*)malloc(sizeof(t_top));
+	if (top == NULL)
+		return (NULL);
+	top->steps = 0;
+	top->ants = NULL;
+	top->way_arr = NULL;
+	top->size = 0;
+	return (top);
+}

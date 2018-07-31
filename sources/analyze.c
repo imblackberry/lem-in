@@ -19,7 +19,7 @@ int		set_all_ways(t_farm *farm)
 	room_way = new_filled_start_int_arr(farm->id_start, farm->nodes + 1);
 	search_and_add_way(farm, room_way, 1);
 	if (farm->all_ways == NULL)
-	return (-1);
+		return (-1);
 	show_ways(farm->all_ways);
 	set_ways_id_and_n_all_ways(farm);
 	ft_free_double_int_arr(&(farm->map));
@@ -57,38 +57,55 @@ int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now)
 
 int top_ways(t_farm *farm)
 {
-	farm->top = ft_memalloc(farm->n_all_ways + 1);
+	farm->top = new_top();
+	farm->current_top = ft_memalloc(farm->n_all_ways + 1);
 	// farm->top_ways[0] = farm->all_ways;
 	// farm->steps = count_steps(farm->top_ways);
 	search_top(farm, farm->all_ways, 0, 0);
+	free_top(farm->current_top);
 	return (1);
 }
 
-int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int n_of_ids)
+int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int steps)
 {
-	ants_come = change_ants_come(ants_come, farm->top, n_of_ids, way_now->next);
-	if (ants_come > ants)
-		return (result); //stop
-	if (n_of_ids > тих, що були)
-		set top and go on
+	ants_come = change_ants_come(ants_come, farm->current_top, n_of_ids, way_now->next);
+	steps = steps + count_steps(ants_come, farm->);
+	if (steps < farm->top->steps)
+	{
+		update_top(&farm->top, current_top, n_of_ids, steps);
+		// free_way_arr(&farm->top->way_arr, farm->top->n_top_ids);
+		// set_top(&farm->current_top, n_of_ids, &farm->top->way_arr, &farm->top->n_top_ids);
+		return (1);
+	}
 	while (way_now != NULL)
 	{
-		if (no_last_way_intersec(farm->top,  way_now) == 1)
+		if (no_last_way_intersec(farm->current_top,  way_now) == 1)
 		{
-			top[n_of_ids] = way_now; //ants already come
-			
-			if (search_top_ways_ids(farm, way_now->next, ants_come, n_of_ids + 1) == 1)
-				return (1);
-			top[n_of_ids] = NULL;
+			current_top[n_of_ids] = way_now; //ants already come
+			if (search_top_ways_ids(farm, way_now->next, ants_come, n_of_ids + 1) == 0)
+				return (0);
+			current_top[n_of_ids] = NULL;
 		}
 		way_now = way_now->next;
 	}
-	return (1);
+	return (0);
 }
 
 int	change_ants_come(int ants_come, t_way **top, int n_of_ids, t_way *way_next)
 {
 	ants_come = ants_come + (way_next->length - top[n_of_ids - 1]->length) * n_of_ids;
+	return (ants_come);
+}
+
+int count_steps(int ants_come, int ants, current_n_ids)
+{
+	int steps;
+
+	ants_come = (ants - ants_come);
+	steps =  ants_come / current_n_ids;
+	if  (ants_come % current_n_ids > 0)
+		steps++;
+	return (steps);
 }
 // ants = 7
 // [1] l = 2

@@ -54,3 +54,16 @@ void	free_ways(t_way *ways)
 	}
 }
 
+void free_way_arr(t_way ***way_arr, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		free(way[0][i]);
+		way[0] = NULL;
+		i++;
+	}
+	free
+}
