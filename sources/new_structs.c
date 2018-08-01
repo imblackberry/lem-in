@@ -28,8 +28,9 @@ t_farm		*newfarm(void)
 		farm->map = 0;
 		farm->all_ways = NULL;
 		farm->n_all_ways = 0;
-		farm->steps = 0;
-		farm->top_ways = NULL;
+		farm->cur_top = NULL;
+		farm->cur_n_ids = 0;
+		farm->top = NULL;
 	}
 	return (farm);
 }
@@ -88,7 +89,7 @@ t_way	*new_way(int *room_way, int room_way_length)
 	if (new_way == NULL)
 		return (NULL);
 	new_way->room_way = room_way;
-	new_way->length = room_way_length;
+	new_way->length = room_way_length - 1;
 	new_way->next = NULL;
 	return (new_way);
 }

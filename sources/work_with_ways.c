@@ -52,43 +52,19 @@ void	set_ways_id_and_n_all_ways(t_farm *farm)
 	}
 }
 
-int	no_last_way_intersec(t_way **top, t_way *way_now)
-{
-	if (n_of_ids <= 1)
-		return (1);
-	i = 0;
-	while (i < way_now->length)
-	{
-		if (room_exist_in_top(way_now->room_way[i], top) == 1)
-			return (хрінь);
-		i++;
-	}
-}
-
-int room_exist_in_top(int room_id, t_way **top)
+void	update_top(t_top *top,  t_way **cur_top, int cur_n_ids, int cur_steps)//witout_ants
 {
 	int i;
 
+	if (top->way_arr != NULL)
+		free_way_arr(&top->way_arr, top->size);
+	top->size = cur_n_ids;
+	top->steps = cur_steps;
+	top->way_arr = (t_way **)malloc(sizeof(t_way *) * top->size);
 	i = 0;
-	while (top[i] != NULL)
+	while (i < top->size)
 	{
-		if (room_exist_in_one_top(room_id, top[i]) == 1)
-			return (1);
+		top->way_arr[i] = cur_top[i];
 		i++;
 	}
-	return (0);
-}
-
-int	room_exist_in_one_top(int room_id, t_way *one_top)
-{
-	int i;
-
-	i = 0;
-	while (i < one_top->length)
-	{
-		if (one_top->room_way[i] == room_id)
-			return (1);
-		i++;
-	}
-	return (0);
 }

@@ -58,9 +58,12 @@ void	show_room_way(int *room_way, int room_way_length)
 	int i;
 
 	i = 0;
-	while (i < room_way_length)
+	while (i <= room_way_length)
 	{
-		ft_printf("[%d]", room_way[i]);
+		if (i == room_way_length)
+			ft_printf("%d", room_way[i]);
+		else
+			ft_printf("%d->", room_way[i]);
 		i++;
 	}
 	ft_printf("\n");
@@ -70,9 +73,33 @@ void	show_ways(t_way *ways)
 {
 	while (ways != NULL)
 	{
-		ft_printf("id = %d\n", ways->id);
-		ft_printf("length = %d\n", ways->length);
+		ft_printf("\tlen = %d\n", ways->length);
+		ft_printf("[%d] =\t", ways->id);
 		show_room_way(ways->room_way, ways->length);
 		ways = ways->next;
+		ft_printf("\n");
 	}
+}
+
+void	show_way_arr(t_way **way, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("WAY_ARR\n");
+		ft_printf("\t\tid = %d\n", way[i]->id);
+		ft_printf("\t\tlength = %d\n", way[i]->length);
+		show_room_way(way[i]->room_way, way[i]->length);
+		i++;
+	}
+	ft_printf("\n");
+}
+
+void	show_top(t_top *top)
+{
+	ft_printf("TOP\n");  // \x1B[0m
+	ft_printf("STEPS = %d\n SIZE = %d\n");
+	show_way_arr(top->way_arr, top->size);
 }
