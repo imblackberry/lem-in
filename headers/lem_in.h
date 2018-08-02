@@ -81,7 +81,7 @@ int			analyze(t_farm *farm);
 void		free_farm(t_farm *farm);
 void		free_roomslst(t_roomslst **roomslst);
 void		free_ways(t_way *ways);
-void		free_way_arr(t_way ***way_arr, int size);
+// void		free_way_arr(t_way **way_arr, int size);
 
 // set_farm.c 
 int			set_number_of_ants(t_farm **farm);

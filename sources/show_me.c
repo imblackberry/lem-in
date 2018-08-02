@@ -100,6 +100,6 @@ void	show_way_arr(t_way **way, int size)
 void	show_top(t_top *top)
 {
 	ft_printf("TOP\n");  // \x1B[0m
-	ft_printf("STEPS = %d\n SIZE = %d\n");
+	ft_printf("STEPS = %d\n SIZE = %d\n", top->steps, top->size);
 	show_way_arr(top->way_arr, top->size);
 }

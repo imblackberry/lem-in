@@ -57,7 +57,10 @@ void	update_top(t_top *top,  t_way **cur_top, int cur_n_ids, int cur_steps)//wit
 	int i;
 
 	if (top->way_arr != NULL)
-		free_way_arr(&top->way_arr, top->size);
+	{
+		free(top->way_arr);
+		top->way_arr = NULL;
+	}
 	top->size = cur_n_ids;
 	top->steps = cur_steps;
 	top->way_arr = (t_way **)malloc(sizeof(t_way *) * top->size);

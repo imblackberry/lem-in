@@ -32,7 +32,7 @@ int room_exist_in_current_top(int room_id, t_way **cur_top)
 {
 	int i;
 
-	i = 1;
+	i = 0;
 	while (cur_top[i] != NULL)
 	{
 		if (room_exist_in_one_current_top(room_id, cur_top[i]) == 1)
