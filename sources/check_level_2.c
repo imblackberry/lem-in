@@ -87,11 +87,16 @@ int			*check_exsisting_two_rooms_id(char *line, t_roomslst *roomslst)
 
 t_roomslst	*search_room_in_lst(char *line, t_roomslst *roomslst)
 {
+	size_t len;
+	t_roomslst *result;
+
+	len = 0;
+	result = NULL;
 	while (roomslst != NULL)
 	{
-		if (ft_strncmp(line, roomslst->name, ft_strlen(roomslst->name)) == 0)
-			return (roomslst);
+		if (ft_strncmp(line, roomslst->name, ft_strlen(roomslst->name)) == 0 && ft_strlen(roomslst->name) > len)
+			result = roomslst;
 		roomslst = roomslst->next;
 	}
-	return (NULL);
+	return (result);
 }

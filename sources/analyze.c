@@ -58,13 +58,6 @@ int top_ways(t_farm *farm)
 {
 	farm->top = new_top();
 	farm->cur_top = ft_memalloc((sizeof(t_way*) * farm->n_all_ways + 1));
-	int i;
-	i = 0;
-	while (i < farm->n_all_ways)
-	{
-		farm->cur_top[i] = NULL;
-		i++;
-	}	
 	search_top(farm, farm->all_ways, 0, 0);
 	ft_printf("___________TOP____________\n");
 	show_top(farm->top);
