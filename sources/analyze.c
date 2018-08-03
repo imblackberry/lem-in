@@ -59,6 +59,8 @@ int top_ways(t_farm *farm)
 	farm->top = new_top();
 	farm->cur_top = ft_memalloc((sizeof(t_way*) * farm->n_all_ways + 1));
 	search_top(farm, farm->all_ways, 0, 0);
+	if (farm->top->steps == 0)
+		return (-1);
 	ft_printf("___________TOP____________\n");
 	show_top(farm->top);
 	ft_printf("_______________________________________\n");
@@ -69,16 +71,25 @@ int top_ways(t_farm *farm)
 int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int cur_steps)
 {
 	// ft_printf("_______________________________________\n");
+
 	while (way_now != NULL)
 	{
 				ft_printf("|||||||||||||||||||||\n");
 				show_way_arr(farm->cur_top, farm->cur_n_ids);
-					ft_printf("|||||||||||||||||||||\n");
+				ft_printf("WAY_NOW\nid = %d \n", way_now->id);
+				show_room_way(way_now->room_way, way_now->length);
+				ft_printf("|||||||||||||||||||||\n");
 		if (no_last_way_intersec(farm->cur_top, farm->cur_n_ids, way_now) == 1)
 		{
 			ants_come = change_ants_come(ants_come, farm->cur_top, farm->cur_n_ids, way_now);
 			farm->cur_top[farm->cur_n_ids] = way_now; //ants already come
 			farm->cur_n_ids++;
+			if (way_now->length == 1)
+			{
+				cur_steps = 1;
+				update_top(farm->top, farm->cur_top, farm->cur_n_ids, cur_steps);
+				return (0);
+			}
 			if (farm->cur_n_ids == 1)
 				cur_steps = way_now->length - 1 + farm->ants;
 			else
@@ -86,9 +97,9 @@ int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int cur_steps)
 			if (farm->top->steps == 0 || cur_steps < farm->top->steps)
 			{
 				update_top(farm->top, farm->cur_top, farm->cur_n_ids, cur_steps);
-				// 	ft_printf("___________TOP____________\n");
-				// show_top(farm->top);
-				// ft_printf("_______________________________________\n");
+					ft_printf("___________TOP____________\n");
+				show_top(farm->top);
+				ft_printf("_______________________________________\n");
 			}
 			
 	

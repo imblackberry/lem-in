@@ -89,13 +89,19 @@ t_roomslst	*search_room_in_lst(char *line, t_roomslst *roomslst)
 {
 	size_t len;
 	t_roomslst *result;
+	size_t new_len;
 
 	len = 0;
+	new_len = 0;
 	result = NULL;
 	while (roomslst != NULL)
 	{
-		if (ft_strncmp(line, roomslst->name, ft_strlen(roomslst->name)) == 0 && ft_strlen(roomslst->name) > len)
+		new_len = ft_strlen(roomslst->name);
+		if (ft_strncmp(line, roomslst->name, new_len) == 0 && new_len > len)
+		{
+			len = new_len;
 			result = roomslst;
+		}
 		roomslst = roomslst->next;
 	}
 	return (result);

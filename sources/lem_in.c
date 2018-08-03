@@ -40,8 +40,8 @@ int		main()
 
 
 
-	analyze(farm);
-		// farm_error(error);
+	if (analyze(farm) < 0)
+		farm_error(error);
 	free_farm(farm);
 	// system("leaks lem-in");
 	return (0);
