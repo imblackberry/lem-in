@@ -18,9 +18,10 @@ void	free_farm(t_farm *farm)
 		return ;
 	ft_strdel(&(farm->file));
 	free_roomslst(&(farm->roomslst));
-	ft_free_double_int_arr(&(farm->map));
 	free_ways(farm->all_ways);
 	farm->all_ways = NULL;
+	free(farm->top->way_arr);
+	free(farm->top);
 	free(farm);
 }
 
@@ -47,10 +48,10 @@ void	free_ways(t_way *ways)
 		return ;
 	while (ways != NULL)
 	{
-		tmp = ways->next;
-		free(ways->room_way);
-		free(ways);
-		ways = tmp;
+		tmp = ways;
+		ways = ways->next;
+		free(tmp->room_way);
+		free(tmp);
 	}
 }
 

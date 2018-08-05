@@ -28,7 +28,7 @@ int		main()
 
 
 
-
+	
 	ft_putstr(farm->file);
 	showroomslst(farm->roomslst);
 	show_int_arr(farm->map, farm->nodes, farm->nodes);
@@ -42,8 +42,8 @@ int		main()
 
 	if (analyze(farm) < 0)
 		farm_error(error);
-	free_farm(farm);
-	// system("leaks lem-in");
+	
+	free_farm(farm);system("leaks lem-in");
 	return (0);
 }
 
