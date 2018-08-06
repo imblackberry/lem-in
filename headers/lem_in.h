@@ -124,7 +124,7 @@ int			set_all_ways(t_farm *farm);
 int			search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now);
 int			top_ways(t_farm *farm);
 int			search_top(t_farm *farm,  t_way *way_now, int ants_come, int n_of_ids);
-int			change_ants_come(int ants_come, t_way **top, int n_of_ids, t_way *way_next);
+int			change_ants_come(int ants_come, t_way **top, int n_of_ids);
 int count_steps(int ants_come, int ants, int cur_n_ids);
 
 // searching.c
