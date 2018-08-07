@@ -43,7 +43,7 @@ int		search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now)
 		add_way_by_increasing_length(&farm->all_ways, &new_way_);	
 		return (1);
 	}
-	i = 0;//&&
+	i = 0;
 	while (farm->map[last_id][i] != -1)
 	{
 		if (farm->map[last_id][i] == 1 && ft_intposition(room_way_now, i, way_length_now) == -1)
@@ -72,6 +72,7 @@ int top_ways(t_farm *farm)
 			return (-1);
 		}
 		free(farm->cur_top);
+		farm->top->ants = 
 		ft_printf("___________TOP____________\n");
 		show_top(farm->top);
 		ft_printf("_______________________________________\n");
@@ -91,7 +92,7 @@ int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int cur_steps)
 		{	
 			farm->cur_top[farm->cur_n_ids] = way_now;
 			farm->cur_n_ids++;
-			ants_come_now = change_ants_come(ants_come, farm->cur_top, farm->cur_n_ids);
+			ants_come_now = ants_come + change_ants_come(farm->cur_top, farm->cur_n_ids);
 			cur_steps = way_now->length - 1 + count_steps(ants_come_now, farm->ants, farm->cur_n_ids);
 			if (farm->top->steps == 0 || cur_steps < farm->top->steps)
 				update_top(farm->top, farm->cur_top, farm->cur_n_ids, cur_steps);
@@ -104,23 +105,35 @@ int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int cur_steps)
 	return (0);
 }
 
-int	change_ants_come(int ants_come, t_way **cur_top, int cur_n_ids)
+int ants_to_top(t_top *top, int ants)
 {
-	if (cur_n_ids <= 1)
-		return (0);
-	ants_come = ants_come + (cur_top[cur_n_ids - 1]->length - cur_top[cur_n_ids - 2]->length) * (cur_n_ids - 1) ;
-	return (ants_come);
-}
+	int length_now;
+	int i;
+	int size;
+	int j;
 
-int count_steps(int ants_come, int ants, int cur_n_ids)
-{
-	int steps;
+	i = 1;
+	size = top->size;
+	length_now = top->way_arr[0]->length;
+	while (length_now != top->way_arr[size - 1]->length)
+	{
+		if (length_now == top->way_arr[i]->length)
+		{
+			length_now = top->way_arr[i]->length;
+			i++;
+		}
+		j = 0;
+		while (j < i)
+		{
+			top->ants[j]++;
+			j++;
+		}
+		length_now++;
+	}
+	j = 0;
+	while ()
+	{
 
-	if (cur_n_ids == 1)
-		return (ants);
-	ants_come = (ants - ants_come);
-	steps =  ants_come / cur_n_ids;
-	if  (ants_come % cur_n_ids > 0)
-		steps++;
-	return (steps);
+	}
+	return (1);
 }

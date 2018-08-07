@@ -124,9 +124,7 @@ int			set_all_ways(t_farm *farm);
 int			search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now);
 int			top_ways(t_farm *farm);
 int			search_top(t_farm *farm,  t_way *way_now, int ants_come, int n_of_ids);
-int			change_ants_come(int ants_come, t_way **top, int n_of_ids);
-int count_steps(int ants_come, int ants, int cur_n_ids);
-
+int			ants_to_top(t_top *top);
 // searching.c
 t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id);
 int			room_exist(char *name, t_roomslst *roomslst);
@@ -137,12 +135,14 @@ t_way		*search_way_by_id(t_way *all_ways, int id);
 // work_with_ways.c
 void		add_way_by_increasing_length(t_way **ways, t_way **add_it);
 void		set_ways_id_and_n_all_ways(t_farm *farm);
-void	update_top(t_top *top,  t_way **cur_top, int cur_n_ids, int cur_steps);//witout_ants
+void		update_top(t_top *top,  t_way **cur_top, int cur_n_ids, int cur_steps);//witout_ants
 
 //  intersection.c
 int	no_last_way_intersec(t_way **cur_top, int cur_n_ids, t_way *way_now);
 int			room_exist_in_current_top(int room_id, t_way **cur_top);
 int			room_exist_in_one_current_top(int room_id, t_way *one_top);
+int			change_ants_come(t_way **top, int n_of_ids);
+int			count_steps(int ants_come, int ants, int cur_n_ids);
 
 #endif
 /* ************************************************************************** */
