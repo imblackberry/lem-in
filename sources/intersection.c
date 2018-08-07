@@ -22,7 +22,19 @@ int	no_last_way_intersec(t_way **cur_top, int cur_n_ids, t_way *way_now)
 	while (i < way_now->length)
 	{
 		if (room_exist_in_current_top(way_now->room_way[i], cur_top) == 1)
+		{
+			// ft_printf("\t\t\tINTERSECTION IN ID = [%d]\n", way_now->room_way[i]);
+			// if (way_now->id == 15)
+			// {
+			// 	int j = 0;
+			// 	while (cur_top[j] != NULL)
+			// 	{
+			// 		show_room_way(cur_top[j]->room_way, cur_top[j]->length);
+			// 		j++;
+			// 	}
+			// }
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -36,7 +48,10 @@ int room_exist_in_current_top(int room_id, t_way **cur_top)
 	while (cur_top[i] != NULL)
 	{
 		if (room_exist_in_one_current_top(room_id, cur_top[i]) == 1)
+		{
+			// ft_printf("\t\t\t\tIN INTERSECTION  i = %d\n", i);
 			return (1);
+		}
 		i++;
 	}
 	return (0);

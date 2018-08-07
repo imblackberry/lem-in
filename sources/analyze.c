@@ -83,34 +83,22 @@ int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int cur_steps)
 {
 	int ants_come_now;
 
+	if (ants_come >= farm->ants)
+		return (0);
 	while (way_now != NULL)
 	{
-				ft_printf("****************************\n");
-					show_way_arr(farm->cur_top, farm->cur_n_ids);
-					ft_printf("WAY_NOW\nid = %d \n", way_now->id);
-					show_room_way(way_now->room_way, way_now->length);
-					ft_printf("*****************************\n");
 		if (no_last_way_intersec(farm->cur_top, farm->cur_n_ids, way_now) == 1)
-		{
-					
+		{	
 			farm->cur_top[farm->cur_n_ids] = way_now;
 			farm->cur_n_ids++;
 			ants_come_now = change_ants_come(ants_come, farm->cur_top, farm->cur_n_ids);
-					ft_printf(" ANTS_COME = %d\n", ants_come_now);
 			cur_steps = way_now->length - 1 + count_steps(ants_come_now, farm->ants, farm->cur_n_ids);
-					ft_printf("STEPS = %d\n", cur_steps);
 			if (farm->top->steps == 0 || cur_steps < farm->top->steps)
-			{
 				update_top(farm->top, farm->cur_top, farm->cur_n_ids, cur_steps);
-				ft_printf("___________TOP____________\n");
-				show_top(farm->top);
-				ft_printf("_______________________________________\n");
-			}
 			search_top(farm, way_now->next, ants_come_now, cur_steps);
-			farm->cur_top[farm->cur_n_ids] = NULL;
 			farm->cur_n_ids--;
+			farm->cur_top[farm->cur_n_ids] = NULL;
 		}
-
 		way_now = way_now->next;
 	}
 	return (0);
@@ -118,15 +106,11 @@ int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int cur_steps)
 
 int	change_ants_come(int ants_come, t_way **cur_top, int cur_n_ids)
 {
-	ft_printf("\t\t\t\tIN FUNCTION ANTS_COME = %d ", ants_come);
 	if (cur_n_ids <= 1)
 		return (0);
 	ants_come = ants_come + (cur_top[cur_n_ids - 1]->length - cur_top[cur_n_ids - 2]->length) * (cur_n_ids - 1) ;
-	ft_printf(" + (%d - %d) * %d = %d\n", cur_top[cur_n_ids - 1]->length, cur_top[cur_n_ids - 2]->length, cur_n_ids - 1,  ants_come);
-	ft_printf("\t\t\t\tIN FUNCTION ANTS_COME = %d\n", ants_come);
 	return (ants_come);
 }
-// how much ants has gone for way_now_length-1 steps
 
 int count_steps(int ants_come, int ants, int cur_n_ids)
 {
@@ -137,41 +121,6 @@ int count_steps(int ants_come, int ants, int cur_n_ids)
 	ants_come = (ants - ants_come);
 	steps =  ants_come / cur_n_ids;
 	if  (ants_come % cur_n_ids > 0)
-	{
-		ft_printf("\t\t\t\tIN FUNCTION STEPS + 1");
 		steps++;
-	}
-	ft_printf("\t\t\t\tIN FUNCTION STEPS = %d / %d =%d ", ants_come, cur_n_ids, steps);
 	return (steps);
 }
-
-// 1234567
-// -----
-// -----
-//  -----
-//  -----
-//   -----
-//   -----
-//    -----
-//    -----
-// --------
-//     -----
-//     -----
-//  --------
-//      -----
-//      -----
-//   --------
-//       -----
-//       -----
-//    --------
-//        -----
-//        -----
-//     --------
-//         -----
-//         -----
-//      --------
-//          -----
-//          -----
-//       --------
-//           -----
-//           -----

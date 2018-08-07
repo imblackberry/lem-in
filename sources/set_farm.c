@@ -96,8 +96,7 @@ int		set_links(t_farm **farm, char *line)
 			(*farm)->map = add_link_to_the_map((*farm)->map, two_link_id);
 			free(two_link_id);
 		}
-			free_line_and_replace_gnl(&line);
-		show_int_arr((*farm)->map, (*farm)->roomslst->id, (*farm)->roomslst->id);
+		free_line_and_replace_gnl(&line);
 	}
 	ft_strdel(&line);
 	return (0);
