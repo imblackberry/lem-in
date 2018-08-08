@@ -103,3 +103,24 @@ void	show_top(t_top *top)
 	ft_printf("STEPS = %d\n SIZE = %d\n", top->steps, top->size);
 	show_way_arr(top->way_arr, top->size);
 }
+
+void    show_move_in_each_step(t_top *top, int ants)
+{
+    int i;
+
+    i = ants; 
+    i = 0;
+    while (i < top->size)
+    {
+
+        i++;
+    }
+}
+ 
+
+        // room1 room2 room3 room4
+// way0  
+// way1
+// way2
+// way3
+// way4

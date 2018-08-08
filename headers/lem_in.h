@@ -43,7 +43,8 @@ typedef struct s_way
 typedef struct s_top
 {
 	int steps;
-	int *ants;
+	int *ants_arr;
+    int **moving;
 	t_way **way_arr;
 	int size;
 }				t_top;
@@ -71,13 +72,16 @@ void    	show_int_arr(int **arr, int size_i, int size_j);//DELL
 void		show_ways(t_way *ways);
 void	show_way_arr(t_way **way, int size);
 void	show_top(t_top *top);
+void    show_move_in_each_step(t_top *top, int ants);
+// main.c
+
 // lem_in.c
 int			read_and_set(t_farm **farm);
 void		farm_error();
 int			analyze(t_farm *farm);
+void        show_each_ant_way(t_top *top, int ants);
 
 // free_farm.c 
-
 void		free_farm(t_farm *farm);
 void		free_roomslst(t_roomslst **roomslst);
 void		free_ways(t_way *ways);
@@ -124,7 +128,9 @@ int			set_all_ways(t_farm *farm);
 int			search_and_add_way(t_farm *farm, int *room_way_now, int way_length_now);
 int			top_ways(t_farm *farm);
 int			search_top(t_farm *farm,  t_way *way_now, int ants_come, int n_of_ids);
-int			ants_to_top(t_top *top);
+int			ants_to_top(t_top *top, int ants);
+void    fill_ants_to_top(int *ants_arr, int i, int *ants);
+
 // searching.c
 t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id);
 int			room_exist(char *name, t_roomslst *roomslst);

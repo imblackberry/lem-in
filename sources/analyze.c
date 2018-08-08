@@ -72,7 +72,7 @@ int top_ways(t_farm *farm)
 			return (-1);
 		}
 		free(farm->cur_top);
-		farm->top->ants = 
+		ants_to_top(farm->top, farm->ants);
 		ft_printf("___________TOP____________\n");
 		show_top(farm->top);
 		ft_printf("_______________________________________\n");
@@ -107,33 +107,42 @@ int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int cur_steps)
 
 int ants_to_top(t_top *top, int ants)
 {
-	int length_now;
+	int step;
 	int i;
-	int size;
-	int j;
 
-	i = 1;
-	size = top->size;
-	length_now = top->way_arr[0]->length;
-	while (length_now != top->way_arr[size - 1]->length)
+	i = 0;
+	top->ants_arr = ft_memalloc(sizeof(int) * top->size);
+	step = top->way_arr[0]->length;
+	i = 0;
+	while (step <= top->steps)
 	{
-		if (length_now == top->way_arr[i]->length)
-		{
-			length_now = top->way_arr[i]->length;
+		while (i < top->size && step == top->way_arr[i]->length)
 			i++;
-		}
-		j = 0;
-		while (j < i)
-		{
-			top->ants[j]++;
-			j++;
-		}
-		length_now++;
-	}
-	j = 0;
-	while ()
-	{
-
+		fill_ants_to_top(top->ants_arr, i, &ants);
+		step++;
 	}
 	return (1);
 }
+
+void    fill_ants_to_top(int *ants_arr, int i, int *ants)
+{
+	int j;
+
+	j = 0;
+	while (j < i && ants > 0)
+	{
+		ants_arr[j]++;
+		ants--;
+		j++;
+	}
+}
+
+// 3 5 8
+// ---
+//  ---
+// ----
+//   ---
+//  ----
+//    ---
+//   ----
+//    ---

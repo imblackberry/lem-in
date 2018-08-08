@@ -102,7 +102,8 @@ t_top *new_top()
 	if (top == NULL)
 		return (NULL);
 	top->steps = 0;
-	top->ants = NULL;
+	top->ants_arr = NULL;
+    top->moving = NULL;
 	top->way_arr = NULL;
 	top->size = 0;
 	return (top);

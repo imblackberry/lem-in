@@ -21,6 +21,7 @@ void	free_farm(t_farm *farm)
 	free_ways(farm->all_ways);
 	farm->all_ways = NULL;
 	free(farm->top->way_arr);
+    free(farm->top->ants);
 	free(farm->top);
 	free(farm);
 }
