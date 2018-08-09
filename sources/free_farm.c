@@ -20,9 +20,7 @@ void	free_farm(t_farm *farm)
 	free_roomslst(&(farm->roomslst));
 	free_ways(farm->all_ways);
 	farm->all_ways = NULL;
-	free(farm->top->way_arr);
-    free(farm->top->ants);
-	free(farm->top);
+	free_top(farm->top);
 	free(farm);
 }
 
@@ -54,6 +52,21 @@ void	free_ways(t_way *ways)
 		free(tmp->room_way);
 		free(tmp);
 	}
+}
+
+void	free_top(t_top *top)
+{
+	int i;
+
+	i = 0;
+	while (i < top->size)
+	{
+		free(top->way_arr[i]->ants_moving);
+		i++;
+	}
+	free(top->way_arr);
+    free(top->ants_arr);
+	free(top);
 }
 
 // void free_way_arr(t_way **way_arr, int size)

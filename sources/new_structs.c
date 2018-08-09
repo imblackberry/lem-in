@@ -89,22 +89,8 @@ t_way	*new_way(int *room_way, int room_way_length)
 	if (new_way == NULL)
 		return (NULL);
 	new_way->room_way = room_way;
+	new_way->ants_moving = NULL;
 	new_way->length = room_way_length - 1;
 	new_way->next = NULL;
 	return (new_way);
-}
-
-t_top *new_top()
-{
-	t_top *top;
-
-	top = (t_top*)malloc(sizeof(t_top));
-	if (top == NULL)
-		return (NULL);
-	top->steps = 0;
-	top->ants_arr = NULL;
-    top->moving = NULL;
-	top->way_arr = NULL;
-	top->size = 0;
-	return (top);
 }

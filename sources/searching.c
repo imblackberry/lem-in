@@ -14,7 +14,7 @@
 
 t_roomslst	*search_room_by_id(t_roomslst *roomslst, int id)
 {
-	if (roomslst == NULL || id < 1)
+	if (roomslst == NULL || id < 0)
 		return (NULL);
 	while (roomslst != NULL)
 	{

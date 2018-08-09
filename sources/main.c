@@ -27,8 +27,8 @@ int		main()
 
 	if (analyze(farm) < 0)
 		farm_error(error);
-    show_each_ant_way(farm->top, farm->ants);
+    ants_moving(farm);
 	free_farm(farm);
-    system("leaks lem-in");
+    // system("leaks lem-in");
 	return (0);
 }
