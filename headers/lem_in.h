@@ -23,6 +23,7 @@
 # define ROOM_ERROR -2
 # define LINK_ERROR -3
 
+
 # define LINK 1
 
 typedef struct s_roomslst

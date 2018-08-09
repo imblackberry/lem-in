@@ -41,6 +41,7 @@ char	*set_rooms(t_farm **farm)
 	int		id;
 	int		check;
 
+
 	id = 0;
 	line = NULL;
 	if (get_next_line(0, &line) < 0)
@@ -68,10 +69,10 @@ char	*set_rooms(t_farm **farm)
 int		set_start_or_end_room(int check, t_farm **farm, int id)
 {
 	if (check == START_ROOM)
-		(*farm)->id_start = ((*farm)->id_start == 0) ? id : -1;
+		(*farm)->id_start = ((*farm)->id_start == -1) ? id : -2;
 	if (check == END_ROOM)
-		(*farm)->id_end = ((*farm)->id_end == 0) ? id : -1;
-	if ((*farm)->id_start == -1 || (*farm)->id_end == -1)
+		(*farm)->id_end = ((*farm)->id_end == -1) ? id : -2;
+	if ((*farm)->id_start == -2 || (*farm)->id_end == -2)
 		return (-1);
 	return (1);
 }
@@ -81,7 +82,7 @@ int		set_links(t_farm **farm, char *line)
 	int *two_link_id;
 	int check;
 
-	if ((*farm)->roomslst == NULL)
+	if ((*farm)->roomslst == NULL || (*farm)->id_start < 0 || (*farm)->id_end < 0)
 		return (-1);
 	(*farm)->map = ft_new_double_int_arr((*farm)->nodes + 1, (*farm)->nodes + 1, 0);
 	set_end_of_map((*farm)->map, (*farm)->nodes);

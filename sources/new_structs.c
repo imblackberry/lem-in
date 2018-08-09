@@ -22,8 +22,8 @@ t_farm		*newfarm(void)
 		farm->file = NULL;
 		farm->ants = 0;
 		farm->roomslst = NULL;
-		farm->id_start = 0;
-		farm->id_end = 0;
+		farm->id_start = -1;
+		farm->id_end = -1;
 		farm->nodes = 0;
 		farm->map = 0;
 		farm->all_ways = NULL;
