@@ -58,6 +58,8 @@ void	free_top(t_top *top)
 {
 	int i;
 
+	if (top == NULL)
+		return ;
 	i = 0;
 	while (i < top->size)
 	{

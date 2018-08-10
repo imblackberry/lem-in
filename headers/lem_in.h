@@ -67,13 +67,12 @@ typedef struct s_farm
 }				t_farm;
 
 // show_me.c
-void		show_room_way(int *room_way, int room_way_length);
-void		showroomslst(t_roomslst *roomslst); //DELLLLLLL
-void    	show_int_arr(int **arr, int size_i, int size_j);//DELL
-void		show_ways(t_way *ways);
-void	show_way_arr(t_way **way, int size);
-void	show_top(t_top *top);
-void    show_move_in_each_step(t_top *top, int ants);
+void	show_room_way(int *room_way, int room_way_length, t_roomslst *roomslst);
+void	showroomslst(t_roomslst *roomslst); //DELLLLLLL
+void    show_int_arr(int **arr, int size_i, int size_j);//DELL
+void	show_ways(t_way *ways, t_roomslst *roomslst);
+void	show_way_arr(t_way **way, int size, t_roomslst *roomslst);
+void	show_top(t_top *top, t_roomslst *roomslst);
 // main.c
 
 // lem_in.c
@@ -94,7 +93,7 @@ void	free_top(t_top *top);
 int			set_number_of_ants(t_farm **farm);
 char		*set_rooms(t_farm **farm);
 int			set_links(t_farm **farm, char *line);
-int			set_start_or_end_room(int check, t_farm **farm, int id);
+int			set_start_or_end_room(int check, t_farm **farm, int id, char **line);
 
 
 // check_level_2.c 
@@ -139,7 +138,7 @@ int			search_top(t_farm *farm,  t_way *way_now, int ants_come, int n_of_ids);
 
 // moving.c
 int step_moving(t_top *top);
-void	moving_in_each_way(t_way *way, int i_way, int ants);
+void	moving_in_each_way(t_way *way, int i_way, int ants, int size);
 void show_step_moving(t_top *top, t_roomslst *roomslst);
 void	show_each_way_moving(t_way *way, t_roomslst *roomslst);
 // searching.c

@@ -53,35 +53,37 @@ void	showroomslst(t_roomslst *roomslst)
 	}
 }
 
-void	show_room_way(int *room_way, int room_way_length)
+void	show_room_way(int *room_way, int room_way_length, t_roomslst *roomslst)
 {
 	int i;
+	t_roomslst *room;
 
 	i = 0;
 	while (i <= room_way_length)
 	{
+		room = search_room_by_id(roomslst, room_way[i]);
 		if (i == room_way_length)
-			ft_printf("%d", room_way[i]);
+			ft_printf("%s", room->name);
 		else
-			ft_printf("%d->", room_way[i]);
+			ft_printf("%s->", room->name);
 		i++;
 	}
 	ft_printf("\n");
 }
 
-void	show_ways(t_way *ways)
+void	show_ways(t_way *ways, t_roomslst *roomslst)
 {
 	while (ways != NULL)
 	{
 		ft_printf("\tlen = %d\n", ways->length);
 		ft_printf("[%d] =\t", ways->id);
-		show_room_way(ways->room_way, ways->length);
+		show_room_way(ways->room_way, ways->length, roomslst);
 		ways = ways->next;
 		ft_printf("\n");
 	}
 }
 
-void	show_way_arr(t_way **way, int size)
+void	show_way_arr(t_way **way, int size, t_roomslst *roomslst)
 {
 	int i;
 
@@ -91,36 +93,16 @@ void	show_way_arr(t_way **way, int size)
 		ft_printf("WAY_ARR\n");
 		ft_printf("\t\tid = %d\n", way[i]->id);
 		ft_printf("\t\tlength = %d\n", way[i]->length);
-		show_room_way(way[i]->room_way, way[i]->length);
+		show_room_way(way[i]->room_way, way[i]->length, roomslst);
 		i++;
 	}
 	ft_printf("\n");
 }
 
-void	show_top(t_top *top)
+void	show_top(t_top *top, t_roomslst *roomslst)
 {
 	ft_printf("TOP\n");  // \x1B[0m
 	ft_printf("STEPS = %d\n SIZE = %d\n", top->steps, top->size);
-	show_way_arr(top->way_arr, top->size);
+	show_way_arr(top->way_arr, top->size, roomslst);
 }
 
-void    show_move_in_each_step(t_top *top, int ants)
-{
-    int i;
-
-    i = ants; 
-    i = 0;
-    while (i < top->size)
-    {
-
-        i++;
-    }
-}
- 
-
-        // room1 room2 room3 room4
-// way0  
-// way1
-// way2
-// way3
-// way4

@@ -47,7 +47,11 @@ int			check_rooms_name(char *line)
 	if (line[i] == 'L' || line[i] == '#')
 		return (-1);
 	while (line[i] != ' ')
+	{
+		if (line[i] == '-')
+			return (-1);
 		i++;
+	}
 	i++;
 	return (i > 0 ? i : -1);
 }

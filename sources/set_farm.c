@@ -49,8 +49,13 @@ char	*set_rooms(t_farm **farm)
 	while ((check = check_data(CHECK_ROOMS, line)) >= 0)
 	{
 		add_next_line_to_file(&(*farm)->file, line);
-		if (check > 1 && set_start_or_end_room(check, farm, id) < 0)
-			return (NULL);
+		if (check > 1)
+		{
+			if (set_start_or_end_room(check, farm, id, &line) < 0 ||
+			check_data(CHECK_ROOMS, line) == IGNORE_LINE)
+				return (NULL);
+			continue ;
+		}
 		if (check == 1)
 		{
 			if (add_each_room(&(*farm)->roomslst, line, id) < 0)
@@ -66,13 +71,15 @@ char	*set_rooms(t_farm **farm)
 	return (NULL);
 }
 
-int		set_start_or_end_room(int check, t_farm **farm, int id)
+int		set_start_or_end_room(int check, t_farm **farm, int id, char **line)
 {
 	if (check == START_ROOM)
 		(*farm)->id_start = ((*farm)->id_start == -1) ? id : -2;
 	if (check == END_ROOM)
 		(*farm)->id_end = ((*farm)->id_end == -1) ? id : -2;
 	if ((*farm)->id_start == -2 || (*farm)->id_end == -2)
+		return (-1);
+	if (free_line_and_replace_gnl(line) < 0)
 		return (-1);
 	return (1);
 }

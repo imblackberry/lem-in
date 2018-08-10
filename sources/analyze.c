@@ -24,7 +24,7 @@ int		set_all_ways(t_farm *farm)
 		return (-1);
 	}
 	set_ways_id_and_n_all_ways(farm);
-	show_ways(farm->all_ways);
+	show_ways(farm->all_ways, farm->roomslst);
 	ft_free_double_int_arr(&(farm->map));
 	free(room_way);
 	return (1);
@@ -67,7 +67,7 @@ int top_ways(t_farm *farm)
 		farm->cur_top[0] = farm->all_ways;
 		update_top(farm->top, farm->cur_top, 1, farm->ants);
 	
-		show_top(farm->top);
+		show_top(farm->top, farm->roomslst);
 		ft_printf("_______________________________________\n");
 	}
 	else

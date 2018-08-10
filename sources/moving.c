@@ -19,13 +19,13 @@ int		step_moving(t_top *top)
 	i = 0;
 	while (i < top->size)
 	{
-		moving_in_each_way(top->way_arr[i], i, top->ants_arr[i]);
+		moving_in_each_way(top->way_arr[i], i, top->ants_arr[i], top->size);
 		i++;
 	}
 	return (0);
 }
 
-void	moving_in_each_way(t_way *way, int i_way, int ants)
+void	moving_in_each_way(t_way *way, int i_way, int ants, int size)
 {
 	int i;
 
@@ -37,7 +37,7 @@ void	moving_in_each_way(t_way *way, int i_way, int ants)
 			if (ants <= way->ants_moving[i])
 				way->ants_moving[i] = -1;
 			else
-				way->ants_moving[i] += i_way + way->length;
+				way->ants_moving[i] += i_way + size;
 		}		
 		else if (way->ants_moving[i] != -1)
 		{
