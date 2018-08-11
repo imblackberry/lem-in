@@ -18,9 +18,9 @@ void	free_farm(t_farm *farm)
 		return ;
 	ft_strdel(&(farm->file));
 	free_roomslst(&(farm->roomslst));
+	free_top(farm->top);
 	free_ways(farm->all_ways);
 	farm->all_ways = NULL;
-	free_top(farm->top);
 	free(farm);
 }
 
@@ -30,6 +30,7 @@ void	free_roomslst(t_roomslst **roomslst)
 
 	if (*roomslst == NULL)
 		return ;
+	tmp = 0;
 	while (*roomslst != NULL)
 	{
 		tmp = *roomslst;

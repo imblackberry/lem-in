@@ -1,12 +1,24 @@
 10
-d 0 0
-e 0 0
 ##start
+a 98 287
 b 9 2
 ##end
-a 1 2
 c 0 0
-a-c
-c-b
-7-7
-
+d 1 2
+e 0 0
+f 0 0
+g 0 0
+h 0 0
+i 0 0
+a-b
+b-c
+a-d
+d-e
+e-c
+b-f
+f-c
+e-g
+g-h
+h-i
+i-c
+fuu

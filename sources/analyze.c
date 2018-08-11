@@ -24,7 +24,6 @@ int		set_all_ways(t_farm *farm)
 		return (-1);
 	}
 	set_ways_id_and_n_all_ways(farm);
-	show_ways(farm->all_ways, farm->roomslst);
 	ft_free_double_int_arr(&(farm->map));
 	free(room_way);
 	return (1);

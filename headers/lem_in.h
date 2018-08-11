@@ -67,17 +67,19 @@ typedef struct s_farm
 }				t_farm;
 
 // show_me.c
+void	show_process(t_farm *farm, int ac, char **av);
 void	show_room_way(int *room_way, int room_way_length, t_roomslst *roomslst);
 void	showroomslst(t_roomslst *roomslst); //DELLLLLLL
 void    show_int_arr(int **arr, int size_i, int size_j);//DELL
 void	show_ways(t_way *ways, t_roomslst *roomslst);
 void	show_way_arr(t_way **way, int size, t_roomslst *roomslst);
 void	show_top(t_top *top, t_roomslst *roomslst);
+void	show_usage();
 // main.c
 
 // lem_in.c
 int			read_and_set(t_farm **farm);
-void		farm_error();
+void	farm_error(int error, t_farm *farm);
 int			analyze(t_farm *farm);
 int        ants_moving(t_farm *farm);
 
@@ -124,7 +126,7 @@ int			*new_filled_start_int_arr(int start_node, int size);
 t_top		*new_top();
 
 // adding.c
-int			add_each_room(t_roomslst **roomslst, char *line, int id);
+int			add_each_room(t_roomslst **roomslst, char *line, int *id);
 void		add_next_line_to_file(char **file, char *line);
 int			**add_link_to_the_map(int **map, int *two_link_id);
 int			*two_link_id(int a, int b);
@@ -161,7 +163,6 @@ int			change_ants_come(t_way **top, int n_of_ids);
 int			count_steps(int ants_come, int ants, int cur_n_ids);
 
 #endif
+// norme
+// showing help
 /* ************************************************************************** */
-// Problems:
-// 		comments/commands after ##start is OK
-// 		integer coordinates is OK

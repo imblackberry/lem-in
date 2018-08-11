@@ -27,8 +27,6 @@ int			check_rooms_coordinate(char *line)
 		{
 			if (line[i] == ' ' && coordinate == 1)
 				i++;
-			else if (coordinate == 1)
-				return (-1);
 			else if (line[i] == '\0' && coordinate == 2)
 				return (1);
 		}

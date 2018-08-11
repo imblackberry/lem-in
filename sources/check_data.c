@@ -17,6 +17,11 @@ int		check_data(int n, char *line)
 	int ret;
 
 	ret = 0;
+	if (line == NULL || line[0] == '\0')
+	{
+		ft_printf("IN line = %s\n", line);
+		return -1;
+	}
 	if (line[0] == '#' &&
 		ft_strcmp(line, "##start") != 0 &&
 		ft_strcmp(line, "##end") != 0)
@@ -64,6 +69,7 @@ int		check_links(char *line)
 	int i;
 
 	i = ft_chrposition(line, '-');
+		
 	if (line[i] == '\0')
 		return (-1);
 	return (1);

@@ -38,8 +38,9 @@ int	analyze(t_farm *farm)
 	return (1);
 }
 
-void	farm_error(int error)
+void	farm_error(int error, t_farm *farm)
 {
+	free_farm(farm);
 	ft_printf("ERROR\n");
 	error = 0;
 }

@@ -12,43 +12,32 @@
 
 #include "../headers/lem_in.h"
 
-void	show_int_arr(int **arr, int size_i, int size_j)
+void	show_process(t_farm *farm, int ac, char **av)
 {
-	int i;
-	int j;
-
-	size_i++;
-	size_j++;
-	i = 0;
-	j = 0;
-	arr[1] = arr[1];
-	ft_printf("\033[0;32m\t");
-	while (j < size_j)
+	ft_putstr(farm->file);
+	if (ac == 2 && ft_strcmp(av[1], "-f") == 0)
 	{
-		ft_printf("id[%d]\t", j);
-		j++;
-	}
-	ft_printf("\n");
-	while (i < size_i)
-	{
-		j = 0;
-		ft_printf("id[%d]", i);
-		while (j < size_j)
-		{
-			ft_printf("\t|%d|", arr[i][j]);
-			j++;
-		}
 		ft_printf("\n");
-		i++;
+		showroomslst(farm->roomslst);
+		ft_printf("\n\033[0;33mSTART ROOM id = [%d]\n", farm->id_start);
+		ft_printf("END ROOM id = [%d]\n\033[0m\n", farm->id_end);
+		show_ways(farm->all_ways, farm->roomslst);
+		show_top(farm->top, farm->roomslst);
 	}
-	ft_printf("___________________________________________________________________________________________________________________________________\n\033[0m");
+	av = 0;
+}
+
+void show_usage()
+{
+	ft_printf("HOHOHOH\n");
 }
 
 void	showroomslst(t_roomslst *roomslst)
 {
+	ft_printf("\t\033[0;32mROOMS\n\033[0m");
 	while (roomslst != NULL)
 	{
-		ft_printf("\033[0;34mid = %d\tname = %s\n\033[0m", roomslst->id, roomslst->name);
+		ft_printf("\033[0;32mid = %d\tname = %s\n\033[0m", roomslst->id, roomslst->name);
 		roomslst = roomslst->next;
 	}
 }
@@ -75,11 +64,11 @@ void	show_ways(t_way *ways, t_roomslst *roomslst)
 {
 	while (ways != NULL)
 	{
-		ft_printf("\tlen = %d\n", ways->length);
+		ft_printf("\t\033[0;35mlen = %d\n", ways->length);
 		ft_printf("[%d] =\t", ways->id);
 		show_room_way(ways->room_way, ways->length, roomslst);
 		ways = ways->next;
-		ft_printf("\n");
+		ft_printf("\n\033[0m\n");
 	}
 }
 
@@ -101,7 +90,7 @@ void	show_way_arr(t_way **way, int size, t_roomslst *roomslst)
 
 void	show_top(t_top *top, t_roomslst *roomslst)
 {
-	ft_printf("TOP\n");  // \x1B[0m
+	ft_printf("TOP\n");
 	ft_printf("STEPS = %d\n SIZE = %d\n", top->steps, top->size);
 	show_way_arr(top->way_arr, top->size, roomslst);
 }
