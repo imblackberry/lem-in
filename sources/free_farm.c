@@ -72,7 +72,3 @@ void	free_top(t_top *top)
 	free(top);
 }
 
-// void free_way_arr(t_way **way_arr, int size)
-// {
-// 	free(way_arr);
-// }

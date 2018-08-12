@@ -37,7 +37,7 @@ int ants_to_top(t_top *top, int ants)
 	i = 0;
 	while (step <= top->steps)
 	{
-		while (i < top->size && step == top->way_arr[i]->length)
+		while (i + 1 < top->size && step == top->way_arr[i + 1]->length)
 			i++;
 		fill_ants_to_top(top->ants_arr, i, &ants);
 		step++;
@@ -50,13 +50,17 @@ void	fill_ants_to_top(int *ants_arr, int i, int *ants)
 	int j;
 
 	j = 0;
-	while (j < i && ants > 0)
+	while (j <= i && *ants > 0)
 	{
 		ants_arr[j]++;
-		ants--;
+		(*ants)--;
 		j++;
 	}
 }
+
+// ---
+//  ---
+// ----
 
 int		set_ants_moving_arr(int size, t_way **way_arr)
 {

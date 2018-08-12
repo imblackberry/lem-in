@@ -18,10 +18,7 @@ int		check_data(int n, char *line)
 
 	ret = 0;
 	if (line == NULL || line[0] == '\0')
-	{
-		ft_printf("IN line = %s\n", line);
-		return -1;
-	}
+		return (-1);
 	if (line[0] == '#' &&
 		ft_strcmp(line, "##start") != 0 &&
 		ft_strcmp(line, "##end") != 0)
@@ -40,11 +37,16 @@ int		check_data(int n, char *line)
 int		check_number_of_ants(char *line)
 {
 	int i;
+	int ants;
 
 	i = 0;
 	while (ft_isdigit(line[i]) != 0)
 		i++;
-	if (line[i] == '\0' && ft_atoi(line) > 0)
+	ants = ft_atoi(line);
+	if (line[i] == '\0' &&
+		ants > 0 &&
+		line[0] != '0' &&
+		ants <= MAX_INT)
 		return (1);
 	return (-1);
 }

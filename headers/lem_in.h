@@ -13,6 +13,7 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # include "../ft_printf/headers/ft_printf.h"
+# define MAX_INT 2147483647
 # define CHECK_N_OF_ANTS 1
 # define CHECK_ROOMS 2
 # define CHECK_LINKS 3
@@ -69,7 +70,7 @@ typedef struct s_farm
 // show_me.c
 void	show_process(t_farm *farm, int ac, char **av);
 void	show_room_way(int *room_way, int room_way_length, t_roomslst *roomslst);
-void	showroomslst(t_roomslst *roomslst); //DELLLLLLL
+void	showroomslst(t_roomslst *roomslst, int id_start, int id_end);
 void    show_int_arr(int **arr, int size_i, int size_j);//DELL
 void	show_ways(t_way *ways, t_roomslst *roomslst);
 void	show_way_arr(t_way **way, int size, t_roomslst *roomslst);
@@ -79,7 +80,7 @@ void	show_usage();
 
 // lem_in.c
 int			read_and_set(t_farm **farm);
-void	farm_error(int error, t_farm *farm);
+void	farm_error( t_farm *farm);
 int			analyze(t_farm *farm);
 int        ants_moving(t_farm *farm);
 
@@ -140,7 +141,7 @@ int			search_top(t_farm *farm,  t_way *way_now, int ants_come, int n_of_ids);
 
 // moving.c
 int step_moving(t_top *top);
-void	moving_in_each_way(t_way *way, int i_way, int ants, int size);
+void	moving_in_each_way(t_way *way, int i_way, int *ants_i, int *size);
 void show_step_moving(t_top *top, t_roomslst *roomslst);
 void	show_each_way_moving(t_way *way, t_roomslst *roomslst);
 // searching.c

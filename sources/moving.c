@@ -15,57 +15,54 @@
 int		step_moving(t_top *top)
 {
 	int i;
+	int size;
 
+	size = top->size;
 	i = 0;
 	while (i < top->size)
 	{
-		moving_in_each_way(top->way_arr[i], i, top->ants_arr[i], top->size);
+		moving_in_each_way(top->way_arr[i], i, &top->ants_arr[i], &size);
+		
+		// 	int k = 0;
+		// 	ft_printf("WAY\t");
+		// 	while (k < top->way_arr[i]->length)
+		// 	{
+		// 		ft_printf("[%d] ", top->way_arr[i]->ants_moving[k]);
+				
+		// 		k++;
+		// 	}
+		// 	ft_printf("ants = (%d)", top->ants_arr[i]);
+		// ft_printf("\n_____\n");
 		i++;
 	}
 	return (0);
 }
 
-void	moving_in_each_way(t_way *way, int i_way, int ants, int size)
+void	moving_in_each_way(t_way *way, int i_way, int *ants_i, int *size)
 {
 	int i;
 
-	i = 0;
-	while (i < way->length)
+	i = way->length - 1;
+	while (i >= 0)
 	{
-		if (way->ants_moving[i] > 0)
+		if (i > 0)
+			way->ants_moving[i] = way->ants_moving[i - 1];
+		else
 		{
-			if (ants <= way->ants_moving[i])
+			if (*ants_i == 0)
+			{
 				way->ants_moving[i] = -1;
+				(*size)--;
+			}
+			else if (way->ants_moving[i + 1] == 0)
+				way->ants_moving[i] = i_way + 1;
 			else
-				way->ants_moving[i] += i_way + size;
-		}		
-		else if (way->ants_moving[i] != -1)
-		{
-			way->ants_moving[i] = i_way + 1;
-
-		// int k = 0;
-		// 	ft_printf("WAY[%d] = ", i_way);
-		// while (k < way->length)
-		// {
-		// 	ft_printf("{%d}", way->ants_moving[k]);
-		// 	k++;
-		// }
-		// ft_printf("\n");
-
-			break ;
+				way->ants_moving[i] += *size;
 		}
-		
-		
-		// int k = 0;
-		// 	ft_printf("WAY[%d] = ", i_way);
-		// while (k < way->length)
-		// {
-		// 	ft_printf("{%d}", way->ants_moving[k]);
-		// 	k++;
-		// }
-		// ft_printf("\n");
-		i++;		
+		i--;
 	}
+	if (*ants_i != 0)
+		(*ants_i)--;
 }
 
 void show_step_moving(t_top *top, t_roomslst *roomslst)
@@ -76,8 +73,11 @@ void show_step_moving(t_top *top, t_roomslst *roomslst)
 	while (i < top->size)
 	{
 		show_each_way_moving(top->way_arr[i], roomslst);
+		// ft_printf("\nsize = %d\n", i);
 		i++;
-	}
+	}		
+	if (top->way_arr[0]->length != 1)
+		ft_printf("\n");
 }
 
 void	show_each_way_moving(t_way *way, t_roomslst *roomslst)
@@ -87,13 +87,13 @@ void	show_each_way_moving(t_way *way, t_roomslst *roomslst)
 	t_roomslst *room;
 
 
-	i = 0;
-	while (i < way->length)
+	i = way->length - 1;
+	while (i >= 0)
 	{
 		j = i + 1;
 		room = search_room_by_id(roomslst, way->room_way[j]);
 		if (way->ants_moving[i] > 0)
 			ft_printf("L%d-%s ", way->ants_moving[i], room->name);
-		i++;
+		i--;
 	}
 }

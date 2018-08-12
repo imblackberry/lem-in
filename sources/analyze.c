@@ -82,7 +82,6 @@ int top_ways(t_farm *farm)
 	}
 	free(farm->cur_top);
 	ants_to_top(farm->top, farm->ants);
-	
 	return (1);
 }
 
@@ -108,6 +107,7 @@ int	search_top(t_farm *farm,  t_way *way_now, int ants_come, int cur_steps)
 		}
 		way_now = way_now->next;
 	}
+
 	return (0);
 }
 

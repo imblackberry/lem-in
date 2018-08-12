@@ -19,7 +19,6 @@ int	read_and_set(t_farm **farm)
 	*farm = newfarm();
 	if (set_number_of_ants(farm) == -1)
 		return (ANTS_ERROR);
-	
 	if ((after_rooms_line = set_rooms(farm)) == NULL)
 		return (ROOM_ERROR);
 	(*farm)->nodes = (*farm)->roomslst->id + 1;
@@ -38,11 +37,10 @@ int	analyze(t_farm *farm)
 	return (1);
 }
 
-void	farm_error(int error, t_farm *farm)
+void	farm_error(t_farm *farm)
 {
 	free_farm(farm);
 	ft_printf("ERROR\n");
-	error = 0;
 }
 
 int        ants_moving(t_farm *farm)
@@ -57,8 +55,6 @@ int        ants_moving(t_farm *farm)
 		if (step_moving(farm->top) < 0)
 			return (-1);
 		show_step_moving(farm->top, farm->roomslst);
-		if (farm->top->way_arr[0]->length != 1)
-			ft_printf("\n");
 		step++;
 	}
 	if (farm->top->way_arr[0]->length == 1)
