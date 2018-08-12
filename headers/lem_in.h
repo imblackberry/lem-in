@@ -93,10 +93,10 @@ void	free_top(t_top *top);
 // void		free_way_arr(t_way **way_arr, int size);
 
 // set_farm.c 
-int			set_number_of_ants(t_farm **farm);
-char		*set_rooms(t_farm **farm);
-int			set_links(t_farm **farm, char *line);
-int			set_start_or_end_room(int check, t_farm **farm, int id, char **line);
+int			set_number_of_ants(t_farm *farm);
+char		*set_rooms(t_farm *farm);
+int			set_links(t_farm *farm, char *line);
+int			set_start_or_end_room(int check, t_farm *farm, int id, char **line);
 
 
 // check_level_2.c 

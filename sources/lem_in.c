@@ -17,12 +17,12 @@ int	read_and_set(t_farm **farm)
 	char *after_rooms_line;
 
 	*farm = newfarm();
-	if (set_number_of_ants(farm) == -1)
+	if (set_number_of_ants(*farm) == -1)
 		return (ANTS_ERROR);
-	if ((after_rooms_line = set_rooms(farm)) == NULL)
+	if ((after_rooms_line = set_rooms(*farm)) == NULL)
 		return (ROOM_ERROR);
 	(*farm)->nodes = (*farm)->roomslst->id + 1;
-	if (set_links(farm, after_rooms_line) < 0)
+	if (set_links(*farm, after_rooms_line) < 0)
 		return (LINK_ERROR);
 	return (0);
 }
