@@ -12,7 +12,7 @@
 
 #include "../headers/lem_in.h"
 
-t_top *new_top()
+t_top	*new_top(void)
 {
 	t_top *top;
 
@@ -26,7 +26,7 @@ t_top *new_top()
 	return (top);
 }
 
-int ants_to_top(t_top *top, int ants)
+int		ants_to_top(t_top *top, int ants)
 {
 	int step;
 	int i;
@@ -57,10 +57,6 @@ void	fill_ants_to_top(int *ants_arr, int i, int *ants)
 		j++;
 	}
 }
-
-// ---
-//  ---
-// ----
 
 int		set_ants_moving_arr(int size, t_way **way_arr)
 {

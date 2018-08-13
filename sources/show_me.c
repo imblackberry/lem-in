@@ -19,7 +19,7 @@ void	show_process(t_farm *farm, int ac, char **av)
 		ft_printf("%s\n", farm->file);
 		ants_moving(farm);
 	}
-	else if (ac == 2 && ft_strcmp(av[1], "-f") == 0)
+	else if (ac == 2 && ft_strcmp(av[1], "-p") == 0)
 	{
 		ft_printf("%s\n", farm->file);
 		ft_printf("\n");
@@ -29,13 +29,7 @@ void	show_process(t_farm *farm, int ac, char **av)
 		ants_moving(farm);
 	}
 	else
-		show_usage();
-	av = 0;
-}
-
-void show_usage()
-{
-	ft_printf("number_of_ants\nthe_rooms\nthe_links\n");
+		ft_printf("Error: wrong arguments\n");
 }
 
 void	showroomslst(t_roomslst *roomslst, int id_start, int id_end)
@@ -52,15 +46,17 @@ void	showroomslst(t_roomslst *roomslst, int id_start, int id_end)
 	}
 	ft_printf("\033[0m");
 	room = search_room_by_id(head, id_start);
-	ft_printf("\n\033[1m\033[30m\tSTART ROOM\n\nid = [%d]\tname = %s\n\n", id_start, room->name);
-		room = search_room_by_id(head, id_end);
-	ft_printf("\tEND ROOM\n\nid = [%d]\tname = %s\n\033[0m\n", id_end, room->name);
+	ft_printf("\n\033[1m\033[30m\tSTART ROOM\n\nid = [%d]\tname = %s\n\n",
+		id_start, room->name);
+	room = search_room_by_id(head, id_end);
+	ft_printf("\tEND ROOM\n\nid = [%d]\tname = %s\n\033[0m\n",
+		id_end, room->name);
 }
 
 void	show_room_way(int *room_way, int room_way_length, t_roomslst *roomslst)
 {
-	int i;
-	t_roomslst *room;
+	int			i;
+	t_roomslst	*room;
 
 	i = 0;
 	while (i <= room_way_length)
@@ -89,26 +85,21 @@ void	show_ways(t_way *ways, t_roomslst *roomslst)
 	ft_printf("\033[0m\n");
 }
 
-void	show_way_arr(t_way **way, int size, t_roomslst *roomslst)
+void	show_top(t_top *top, t_roomslst *roomslst)
 {
 	int i;
 
+	ft_printf("\t\033[32;1mTOP\n\n");
+	ft_printf("STEPS = %d\nSIZE = %d\n", top->steps, top->size);
 	i = 0;
-	while (i < size)
+	while (i < top->size)
 	{
-		ft_printf("\tid = %d\n", way[i]->id);
-		ft_printf("\tlength = %d\n", way[i]->length);
-		show_room_way(way[i]->room_way, way[i]->length, roomslst);
+		ft_printf("\tid = %d\n", top->way_arr[i]->id);
+		ft_printf("\tlength = %d\n", top->way_arr[i]->length);
+		show_room_way(top->way_arr[i]->room_way, top->way_arr[i]->length,
+			roomslst);
 		i++;
 	}
 	ft_printf("\n");
-}
-
-void	show_top(t_top *top, t_roomslst *roomslst)
-{
-	ft_printf("\t\033[32;1mTOP\n\n");
-	ft_printf("STEPS = %d\nSIZE = %d\n", top->steps, top->size);
-	show_way_arr(top->way_arr, top->size, roomslst);
 	ft_printf("\033[0m\n");
 }
-

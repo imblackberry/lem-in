@@ -68,7 +68,6 @@ void	free_top(t_top *top)
 		i++;
 	}
 	free(top->way_arr);
-    free(top->ants_arr);
+	free(top->ants_arr);
 	free(top);
 }
-

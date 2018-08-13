@@ -32,6 +32,7 @@ int		set_number_of_ants(t_farm *farm)
 		if (get_next_line(0, &line) < 0)
 			return (-1);
 	}
+	ft_strdel(&line);
 	return (-1);
 }
 
@@ -43,28 +44,22 @@ char	*set_rooms(t_farm *farm)
 
 	id = 0;
 	line = NULL;
-	int gnl;
-	if ((gnl = get_next_line(0, &line)) < 0)
+	if (get_next_line(0, &line) < 0)
 		return (NULL);
 	while ((check = check_data(CHECK_ROOMS, line)) >= 0)
 	{
 		add_next_line_to_file(&farm->file, line);
-		if (check > 1)
-		{
-			if (set_start_or_end_room(check, farm, id, &line) < 0 ||
-				check_data(CHECK_ROOMS, line) <= 0)
-				return (NULL);
+		if (set_each_room(line, farm, id, check) == ERROR)
+			return (NULL);
+		else if (check > 1)
 			continue ;
-		}
 		else if (check == 1)
-		{
-			if (add_each_room(&farm->roomslst, line, &id) < 0)
-				return (NULL);
-		}
+			id++;
 		if (free_line_and_replace_gnl(&line) < 0)
 			return (NULL);
 	}
-	if (check_links(line) > 0)
+	if (farm->id_end >= 0 && farm->id_start >= 0 && check_links(line) > 0
+		&& farm->id_end != farm->id_start)
 		return (line);
 	ft_strdel(&line);
 	return (NULL);
@@ -73,10 +68,10 @@ char	*set_rooms(t_farm *farm)
 int		set_start_or_end_room(int check, t_farm *farm, int id, char **line)
 {
 	if (check == START_ROOM)
-		 farm->id_start = ( farm->id_start == -1) ? id : -2;
+		farm->id_start = (farm->id_start == -1) ? id : -2;
 	if (check == END_ROOM)
-		 farm->id_end = ( farm->id_end == -1) ? id : -2;
-	if (farm->id_start == -2 ||  farm->id_end == -2)
+		farm->id_end = (farm->id_end == -1) ? id : -2;
+	if (farm->id_start == -2 || farm->id_end == -2)
 		return (-1);
 	if (free_line_and_replace_gnl(line) < 0)
 		return (-1);
@@ -85,7 +80,6 @@ int		set_start_or_end_room(int check, t_farm *farm, int id, char **line)
 
 int		set_links(t_farm *farm, char *line)
 {
-	int *two_link_id;
 	int check;
 
 	if (farm->roomslst == NULL || farm->id_start < 0 || farm->id_end < 0)
@@ -95,16 +89,23 @@ int		set_links(t_farm *farm, char *line)
 	while ((check = check_data(CHECK_LINKS, line)) >= 0)
 	{
 		add_next_line_to_file(&farm->file, line);
-		if (check != IGNORE_LINE)
-		{
-			two_link_id = check_exsisting_two_rooms_id(line, farm->roomslst);
-			if (two_link_id == NULL)
-				break ;
-			farm->map = add_link_to_the_map(farm->map, two_link_id);
-			free(two_link_id);
-		}
+		if (set_each_link(line, farm, check) < 0)
+			break ;
 		free_line_and_replace_gnl(&line);
 	}
 	ft_strdel(&line);
 	return (0);
+}
+
+void	clear_last_file_line(char *file)
+{
+	int len;
+
+	len = ft_strlen(file);
+	len -= 2;
+	while (file[len] != '\n')
+	{
+		file[len] = '\0';
+		len--;
+	}
 }

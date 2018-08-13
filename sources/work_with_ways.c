@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../headers/lem_in.h"
 
 void	add_way_by_increasing_length(t_way **ways, t_way **add_it)
@@ -36,8 +35,8 @@ void	add_way_by_increasing_length(t_way **ways, t_way **add_it)
 
 void	set_ways_id_and_n_all_ways(t_farm *farm)
 {
-	t_way *all_ways_head;
-	int id;
+	t_way	*all_ways_head;
+	int		id;
 
 	id = 1;
 	all_ways_head = farm->all_ways;
@@ -52,7 +51,7 @@ void	set_ways_id_and_n_all_ways(t_farm *farm)
 	}
 }
 
-void	update_top(t_top *top,  t_way **cur_top, int cur_n_ids, int cur_steps)//witout_ants
+void	update_top(t_top *top, t_way **cur_top, int cur_n_ids, int cur_steps)
 {
 	int i;
 

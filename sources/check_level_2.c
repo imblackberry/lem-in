@@ -46,7 +46,7 @@ int			check_rooms_name(char *line)
 		return (-1);
 	while (line[i] != ' ')
 	{
-		if (line[i] == '-')
+		if (line[i] == '-' || line[i] == '\0')
 			return (-1);
 		i++;
 	}
@@ -89,9 +89,9 @@ int			*check_exsisting_two_rooms_id(char *line, t_roomslst *roomslst)
 
 t_roomslst	*search_room_in_lst(char *line, t_roomslst *roomslst)
 {
-	size_t len;
-	t_roomslst *result;
-	size_t new_len;
+	size_t		len;
+	t_roomslst	*result;
+	size_t		new_len;
 
 	len = 0;
 	new_len = 0;

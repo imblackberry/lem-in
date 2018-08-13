@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../headers/lem_in.h"
 
 int	no_last_way_intersec(t_way **cur_top, int cur_n_ids, t_way *way_now)
 {
 	int i;
-	
+
 	if (cur_n_ids == 0)
 		return (1);
 	i = 1;
@@ -29,7 +28,7 @@ int	no_last_way_intersec(t_way **cur_top, int cur_n_ids, t_way *way_now)
 	return (1);
 }
 
-int room_exist_in_current_top(int room_id, t_way **cur_top)
+int	room_exist_in_current_top(int room_id, t_way **cur_top)
 {
 	int i;
 
@@ -61,18 +60,19 @@ int	change_ants_come(t_way **cur_top, int cur_n_ids)
 {
 	if (cur_n_ids <= 1)
 		return (0);
-	return ((cur_top[cur_n_ids - 1]->length - cur_top[cur_n_ids - 2]->length) * (cur_n_ids - 1));
+	return ((cur_top[cur_n_ids - 1]->length -
+				cur_top[cur_n_ids - 2]->length) * (cur_n_ids - 1));
 }
 
-int count_steps(int ants_come, int ants, int cur_n_ids)
+int	count_steps(int ants_come, int ants, int cur_n_ids)
 {
 	int steps;
 
 	if (cur_n_ids == 1)
 		return (ants);
 	ants_come = (ants - ants_come);
-	steps =  ants_come / cur_n_ids;
-	if  (ants_come % cur_n_ids > 0)
+	steps = ants_come / cur_n_ids;
+	if (ants_come % cur_n_ids > 0)
 		steps++;
 	return (steps);
 }

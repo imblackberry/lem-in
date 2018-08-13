@@ -50,7 +50,7 @@ t_roomslst	*newroomslst(void)
 	return (roomslst);
 }
 
-void	set_end_of_map(int **arr, int size)
+void		set_end_of_map(int **arr, int size)
 {
 	int i;
 
@@ -63,7 +63,7 @@ void	set_end_of_map(int **arr, int size)
 	}
 }
 
-int *new_filled_start_int_arr(int start_node, int size)
+int			*new_filled_start_int_arr(int start_node, int size)
 {
 	int *room_way;
 	int i;
@@ -81,7 +81,7 @@ int *new_filled_start_int_arr(int start_node, int size)
 	return (room_way);
 }
 
-t_way	*new_way(int *room_way, int room_way_length)
+t_way		*new_way(int *room_way, int room_way_length)
 {
 	t_way *new_way;
 

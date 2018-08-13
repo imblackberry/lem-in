@@ -12,7 +12,7 @@
 
 #include "../headers/lem_in.h"
 
-int	read_and_set(t_farm **farm)
+int		read_and_set(t_farm **farm)
 {
 	char *after_rooms_line;
 
@@ -27,7 +27,7 @@ int	read_and_set(t_farm **farm)
 	return (0);
 }
 
-int	analyze(t_farm *farm)
+int		analyze(t_farm *farm)
 {
 	int top_way;
 
@@ -43,7 +43,7 @@ void	farm_error(t_farm *farm)
 	ft_printf("ERROR\n");
 }
 
-int        ants_moving(t_farm *farm)
+int		ants_moving(t_farm *farm)
 {
 	int step;
 

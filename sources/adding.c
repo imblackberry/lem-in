@@ -12,25 +12,28 @@
 
 #include "../headers/lem_in.h"
 
-int		add_each_room(t_roomslst **roomslst, char *line, int *id)
+int		add_each_room(t_roomslst **roomslst, char *line, int id)
 {
-	t_roomslst *new;
-	char *name;
+	t_roomslst	*new;
+	char		*name;
 
 	new = NULL;
 	name = ft_strsub(line, 0, ft_chrposition(line, ' '));
 	if (room_exist(name, *roomslst) == 1)
+	{
+		ft_strdel(&name);
+		ft_strdel(&line);
 		return (-1);
+	}
 	new = newroomslst();
 	if (new != NULL)
 	{
-		new->id = *id;
+		new->id = id;
 		new->name = name;
 	}
 	if (*roomslst != NULL)
 		new->next = *roomslst;
 	*roomslst = new;
-	(*id)++;
 	return (1);
 }
 

@@ -68,11 +68,12 @@ int		check_rooms(char *line)
 
 int		check_links(char *line)
 {
-	int i;
+	char *start;
+	char *end;
 
-	i = ft_chrposition(line, '-');
-		
-	if (line[i] == '\0')
+	start = ft_strchr(line, '-');
+	end = ft_strrchr(line, '-');
+	if (start == 0 || end == 0 || start != end)
 		return (-1);
 	return (1);
 }

@@ -22,17 +22,6 @@ int		step_moving(t_top *top)
 	while (i < top->size)
 	{
 		moving_in_each_way(top->way_arr[i], i, &top->ants_arr[i], &size);
-		
-		// 	int k = 0;
-		// 	ft_printf("WAY\t");
-		// 	while (k < top->way_arr[i]->length)
-		// 	{
-		// 		ft_printf("[%d] ", top->way_arr[i]->ants_moving[k]);
-				
-		// 		k++;
-		// 	}
-		// 	ft_printf("ants = (%d)", top->ants_arr[i]);
-		// ft_printf("\n_____\n");
 		i++;
 	}
 	return (0);
@@ -65,7 +54,7 @@ void	moving_in_each_way(t_way *way, int i_way, int *ants_i, int *size)
 		(*ants_i)--;
 }
 
-void show_step_moving(t_top *top, t_roomslst *roomslst)
+void	show_step_moving(t_top *top, t_roomslst *roomslst)
 {
 	int i;
 
@@ -73,19 +62,17 @@ void show_step_moving(t_top *top, t_roomslst *roomslst)
 	while (i < top->size)
 	{
 		show_each_way_moving(top->way_arr[i], roomslst);
-		// ft_printf("\nsize = %d\n", i);
 		i++;
-	}		
+	}
 	if (top->way_arr[0]->length != 1)
 		ft_printf("\n");
 }
 
 void	show_each_way_moving(t_way *way, t_roomslst *roomslst)
 {
-	int i;
-	int j;
-	t_roomslst *room;
-
+	int			i;
+	int			j;
+	t_roomslst	*room;
 
 	i = way->length - 1;
 	while (i >= 0)
