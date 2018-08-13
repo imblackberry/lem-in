@@ -30,20 +30,17 @@ int	set_each_link(char *line, t_farm *farm, int check)
 	return (1);
 }
 
-int	set_each_room(char *line, t_farm *farm, int id, int check)
+int	set_each_room(char **line, t_farm *farm, int *id, int check)
 {
 	if (check > 1)
 	{
-		if (set_start_or_end_room(check, farm, id, &line) < 0 ||
-			check_data(CHECK_ROOMS, line) <= 0)
-		{
-			ft_strdel(&line);
+		if (set_start_or_end_room(check, farm, *id, line) < 0 ||
+			check_rooms(*line) < 0)
 			return (ERROR);
-		}
 	}
 	else if (check == 1)
 	{
-		if (add_each_room(&farm->roomslst, line, id) < 0)
+		if (add_each_room(&farm->roomslst, *line, id) < 0)
 			return (ERROR);
 	}
 	return (1);

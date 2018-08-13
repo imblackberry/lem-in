@@ -49,19 +49,20 @@ char	*set_rooms(t_farm *farm)
 	while ((check = check_data(CHECK_ROOMS, line)) >= 0)
 	{
 		add_next_line_to_file(&farm->file, line);
-		if (set_each_room(line, farm, id, check) == ERROR)
+		if (set_each_room(&line, farm, &id, check) == ERROR)
+		{
+			free(line);
 			return (NULL);
+		}
 		else if (check > 1)
 			continue ;
-		else if (check == 1)
-			id++;
 		if (free_line_and_replace_gnl(&line) < 0)
 			return (NULL);
 	}
 	if (farm->id_end >= 0 && farm->id_start >= 0 && check_links(line) > 0
 		&& farm->id_end != farm->id_start)
 		return (line);
-	ft_strdel(&line);
+	free(line);
 	return (NULL);
 }
 

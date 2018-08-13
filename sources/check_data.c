@@ -56,6 +56,8 @@ int		check_rooms(char *line)
 	int ret;
 	int i;
 
+	if (line == NULL || line[0] == '\0')
+		return (-1);
 	ret = 1;
 	i = 0;
 	if ((ret = check_start_or_end_room(&line)) > 1)
@@ -71,6 +73,8 @@ int		check_links(char *line)
 	char *start;
 	char *end;
 
+	if (line == NULL || line[0] == '\0')
+		return (-1);
 	start = ft_strchr(line, '-');
 	end = ft_strrchr(line, '-');
 	if (start == 0 || end == 0 || start != end)

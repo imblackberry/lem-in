@@ -66,7 +66,7 @@ void		clear_last_file_line(char *file);
 **set_farm_level_2.c
 */
 int			set_each_link(char *line, t_farm *farm, int check);
-int			set_each_room(char *line, t_farm *farm, int id, int check);
+int			set_each_room(char **line, t_farm *farm, int *id, int check);
 
 /*
 **check_level_2.c
@@ -106,7 +106,7 @@ t_top		*new_top();
 /*
 **adding.c
 */
-int			add_each_room(t_roomslst **roomslst, char *line, int id);
+int			add_each_room(t_roomslst **roomslst, char *line, int *id);
 void		add_next_line_to_file(char **file, char *line);
 int			**add_link_to_the_map(int **map, int *two_link_id);
 int			*two_link_id(int a, int b);
