@@ -51,7 +51,7 @@ void	set_ways_id_and_n_all_ways(t_farm *farm)
 	}
 }
 
-void	update_top(t_top *top, t_way **cur_top, int cur_n_ids, int cur_steps)
+void	update_top(t_top *top, t_way **cur_top, int cur_n_ids, t_ll cur_steps)
 {
 	int i;
 

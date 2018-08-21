@@ -28,8 +28,8 @@ t_top	*new_top(void)
 
 int		ants_to_top(t_top *top, int ants)
 {
-	int step;
-	int i;
+	t_ll	step;
+	int		i;
 
 	i = 0;
 	top->ants_arr = ft_memalloc(sizeof(int) * top->size);

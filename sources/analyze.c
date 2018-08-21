@@ -83,7 +83,7 @@ int		top_ways(t_farm *farm)
 	return (1);
 }
 
-int		search_top(t_farm *farm, t_way *way_now, int ants_come, int cur_steps)
+int		search_top(t_farm *farm, t_way *way_now, int ants_come, t_ll cur_steps)
 {
 	int ants_come_now;
 

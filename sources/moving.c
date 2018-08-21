@@ -12,17 +12,18 @@
 
 #include "../headers/lem_in.h"
 
-int		step_moving(t_top *top, int *mov_size)
+int		step_moving(t_top *top, int *mov_size, int m)
 {
 	int i;
 
 	i = 0;
 	while (i < top->size)
 	{
-		moving_in_each_way(top->way_arr[i], i, &top->ants_arr[i], mov_size);	
+		moving_in_each_way(top->way_arr[i], i, &top->ants_arr[i], mov_size);
+		show_m(top->way_arr[i]->ants_moving, top->way_arr[i]->length, m);
 		i++;
 	}
-	if (_m == 1)
+	if (m == 1)
 		ft_printf("\n\n");
 	return (0);
 }
@@ -45,17 +46,16 @@ void	moving_in_each_way(t_way *way, int i_way, int *ants_i, int *mov_size)
 			else
 				way->ants_moving[i] += *mov_size;
 			if (*ants_i == 0)
-					(*mov_size)--;
+				(*mov_size)--;
 		}
 		i--;
 	}
-	show_m(way->ants_moving, way->length);
 	(*ants_i)--;
 }
 
 void	show_step_moving(t_top *top, t_roomslst *roomslst)
 {
-	int i;
+	t_ll i;
 
 	i = 0;
 	while (i < top->size)
@@ -84,11 +84,11 @@ void	show_each_way_moving(t_way *way, t_roomslst *roomslst)
 	}
 }
 
-void	show_m(int *ants_moving, int way_length)
+void	show_m(int *ants_moving, int way_length, int m)
 {
 	int k;
 
-	if (_m == 0)
+	if (m == 0)
 		return ;
 	k = 0;
 	ft_printf("\n");
@@ -97,5 +97,4 @@ void	show_m(int *ants_moving, int way_length)
 		ft_printf("[%d]", ants_moving[k]);
 		k++;
 	}
-
 }
