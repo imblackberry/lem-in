@@ -21,9 +21,11 @@ int		main(int ac, char **av)
 	if ((error = read_and_set(&farm)) < 0 || analyze(farm) < 0)
 	{
 		farm_error(farm);
+		system("leaks lem-in");
 		return (0);
 	}
 	show_process(farm, ac, av);
 	free_farm(farm);
+	system("leaks lem-in");
 	return (0);
 }

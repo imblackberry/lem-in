@@ -20,6 +20,7 @@ int		set_all_ways(t_farm *farm)
 	search_and_add_way(farm, room_way, 1);
 	if (farm->all_ways == NULL)
 	{
+		free(room_way);
 		ft_free_double_int_arr(&(farm->map));
 		return (-1);
 	}

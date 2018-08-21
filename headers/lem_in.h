@@ -9,7 +9,7 @@
 /*   Updated: 2018/07/03 11:58:13 by vblokha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+//2147483628 DOESNT WORK IF MORE THAN 2147483627
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # include "../ft_printf/headers/ft_printf.h"
@@ -26,7 +26,10 @@
 # define LINK_ERROR -3
 # define ERROR -1
 # define LINK 1
+# define USAGE "Options:\n-r\t\t\tshow rooms\n-w\t\t\tshow all ways\n-top\t\t\t\
+show top set\n-m\t\t\tshow moving\n-h\t\t\thelp\n"
 
+int _m;
 /*
 **show_me.c
 */
@@ -44,7 +47,7 @@ int			read_and_set(t_farm **farm);
 void		farm_error(t_farm *farm);
 int			analyze(t_farm *farm);
 int			ants_moving(t_farm *farm);
-
+int			*program_args(int ac, char **av, int *args);
 /*
 **free_farm.c
 */
@@ -125,11 +128,11 @@ int			search_top(t_farm *farm, t_way *way_now, int ants_come,
 /*
 **moving.c
 */
-int			step_moving(t_top *top);
+int			step_moving(t_top *top, int *mov_size);
 void		moving_in_each_way(t_way *way, int i_way, int *ants_i, int *size);
 void		show_step_moving(t_top *top, t_roomslst *roomslst);
 void		show_each_way_moving(t_way *way, t_roomslst *roomslst);
-
+void		show_m(int *ants_moving, int way_length);
 /*
 **searching.c
 */

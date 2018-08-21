@@ -43,6 +43,8 @@ int		check_number_of_ants(char *line)
 	while (ft_isdigit(line[i]) != 0)
 		i++;
 	ants = ft_atoi(line);
+	if (ants <= 0)
+		return (-1);
 	if (line[i] == '\0' &&
 		ants > 0 &&
 		line[0] != '0' &&
