@@ -43,16 +43,18 @@ void	farm_error(t_farm *farm)
 	ft_printf("ERROR\n");
 }
 
-int		ants_moving(t_farm *farm)
+int		ants_moving(t_farm *farm, int m)
 {
-	int step;
+	t_ll	step;
+	int		mov_size;
 
 	if (set_ants_moving_arr(farm->top->size, farm->top->way_arr) < 0)
 		return (-1);
 	step = 0;
+	mov_size = farm->top->size;
 	while (step < farm->top->steps)
 	{
-		if (step_moving(farm->top) < 0)
+		if (step_moving(farm->top, &mov_size, m) < 0)
 			return (-1);
 		show_step_moving(farm->top, farm->roomslst);
 		step++;

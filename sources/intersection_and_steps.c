@@ -12,7 +12,7 @@
 
 #include "../headers/lem_in.h"
 
-int	no_last_way_intersec(t_way **cur_top, int cur_n_ids, t_way *way_now)
+int		no_last_way_intersec(t_way **cur_top, int cur_n_ids, t_way *way_now)
 {
 	int i;
 
@@ -28,7 +28,7 @@ int	no_last_way_intersec(t_way **cur_top, int cur_n_ids, t_way *way_now)
 	return (1);
 }
 
-int	room_exist_in_current_top(int room_id, t_way **cur_top)
+int		room_exist_in_current_top(int room_id, t_way **cur_top)
 {
 	int i;
 
@@ -42,7 +42,7 @@ int	room_exist_in_current_top(int room_id, t_way **cur_top)
 	return (0);
 }
 
-int	room_exist_in_one_current_top(int room_id, t_way *one_top)
+int		room_exist_in_one_current_top(int room_id, t_way *one_top)
 {
 	int i;
 
@@ -56,7 +56,7 @@ int	room_exist_in_one_current_top(int room_id, t_way *one_top)
 	return (0);
 }
 
-int	change_ants_come(t_way **cur_top, int cur_n_ids)
+int		change_ants_come(t_way **cur_top, int cur_n_ids)
 {
 	if (cur_n_ids <= 1)
 		return (0);
@@ -64,9 +64,9 @@ int	change_ants_come(t_way **cur_top, int cur_n_ids)
 				cur_top[cur_n_ids - 2]->length) * (cur_n_ids - 1));
 }
 
-int	count_steps(int ants_come, int ants, int cur_n_ids)
+t_ll	count_steps(int ants_come, int ants, int cur_n_ids)
 {
-	int steps;
+	t_ll steps;
 
 	if (cur_n_ids == 1)
 		return (ants);

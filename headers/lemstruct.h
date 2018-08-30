@@ -13,6 +13,7 @@
 #ifndef LEMSTRUCT_H
 # define LEMSTRUCT_H
 
+typedef long long int	t_ll;
 typedef struct	s_roomslst
 {
 	char				*name;
@@ -31,7 +32,7 @@ typedef struct	s_way
 
 typedef struct	s_top
 {
-	int			steps;
+	long long	steps;
 	int			*ants_arr;
 	t_way		**way_arr;
 	int			size;

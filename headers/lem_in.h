@@ -30,21 +30,23 @@
 /*
 **show_me.c
 */
+
+int			*program_args(int ac, char **av, int *args);
 void		show_process(t_farm *farm, int ac, char **av);
 void		show_room_way(int *room_way, int room_way_length,
 							t_roomslst *roomslst);
 void		showroomslst(t_roomslst *roomslst, int id_start, int id_end);
 void		show_ways(t_way *ways, t_roomslst *roomslst);
 void		show_top(t_top *top, t_roomslst *roomslst);
-
+void		show_by_arg(t_farm *farm, int i, int *m);
 /*
 ***lem_in.c
 */
 int			read_and_set(t_farm **farm);
 void		farm_error(t_farm *farm);
 int			analyze(t_farm *farm);
-int			ants_moving(t_farm *farm);
-
+int			ants_moving(t_farm *farm, int m);
+int			*program_args(int ac, char **av, int *args);
 /*
 **free_farm.c
 */
@@ -120,16 +122,16 @@ int			search_and_add_way(t_farm *farm, int *room_way_now,
 								int way_length_now);
 int			top_ways(t_farm *farm);
 int			search_top(t_farm *farm, t_way *way_now, int ants_come,
-						int n_of_ids);
+						t_ll cur_steps);
 
 /*
 **moving.c
 */
-int			step_moving(t_top *top);
+int			step_moving(t_top *top, int *mov_size, int m);
 void		moving_in_each_way(t_way *way, int i_way, int *ants_i, int *size);
 void		show_step_moving(t_top *top, t_roomslst *roomslst);
 void		show_each_way_moving(t_way *way, t_roomslst *roomslst);
-
+void		show_m(int *ants_moving, int way_length, int m);
 /*
 **searching.c
 */
@@ -145,7 +147,7 @@ t_way		*search_way_by_id(t_way *all_ways, int id);
 void		add_way_by_increasing_length(t_way **ways, t_way **add_it);
 void		set_ways_id_and_n_all_ways(t_farm *farm);
 void		update_top(t_top *top, t_way **cur_top, int cur_n_ids,
-						int cur_steps);
+						t_ll cur_steps);
 
 /*
 **intersection.c
@@ -155,6 +157,6 @@ int			no_last_way_intersec(t_way **cur_top, int cur_n_ids,
 int			room_exist_in_current_top(int room_id, t_way **cur_top);
 int			room_exist_in_one_current_top(int room_id, t_way *one_top);
 int			change_ants_come(t_way **top, int n_of_ids);
-int			count_steps(int ants_come, int ants, int cur_n_ids);
+t_ll		count_steps(int ants_come, int ants, int cur_n_ids);
 
 #endif

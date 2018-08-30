@@ -36,12 +36,18 @@ int	set_each_room(char **line, t_farm *farm, int *id, int check)
 	{
 		if (set_start_or_end_room(check, farm, *id, line) < 0 ||
 			check_rooms(*line) < 0)
+		{
+			ft_strdel(line);
 			return (ERROR);
+		}
 	}
 	else if (check == 1)
 	{
 		if (add_each_room(&farm->roomslst, *line, id) < 0)
+		{
+			ft_strdel(line);
 			return (ERROR);
+		}
 	}
 	return (1);
 }

@@ -20,6 +20,7 @@ int		set_all_ways(t_farm *farm)
 	search_and_add_way(farm, room_way, 1);
 	if (farm->all_ways == NULL)
 	{
+		free(room_way);
 		ft_free_double_int_arr(&(farm->map));
 		return (-1);
 	}
@@ -82,7 +83,7 @@ int		top_ways(t_farm *farm)
 	return (1);
 }
 
-int		search_top(t_farm *farm, t_way *way_now, int ants_come, int cur_steps)
+int		search_top(t_farm *farm, t_way *way_now, int ants_come, t_ll cur_steps)
 {
 	int ants_come_now;
 

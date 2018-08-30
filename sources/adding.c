@@ -22,7 +22,6 @@ int		add_each_room(t_roomslst **roomslst, char *line, int *id)
 	if (room_exist(name, *roomslst) == 1)
 	{
 		ft_strdel(&name);
-		ft_strdel(&line);
 		return (-1);
 	}
 	new = newroomslst();

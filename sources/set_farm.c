@@ -50,10 +50,7 @@ char	*set_rooms(t_farm *farm)
 	{
 		add_next_line_to_file(&farm->file, line);
 		if (set_each_room(&line, farm, &id, check) == ERROR)
-		{
-			free(line);
 			return (NULL);
-		}
 		else if (check > 1)
 			continue ;
 		if (free_line_and_replace_gnl(&line) < 0)

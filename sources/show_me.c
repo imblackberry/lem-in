@@ -12,26 +12,6 @@
 
 #include "../headers/lem_in.h"
 
-void	show_process(t_farm *farm, int ac, char **av)
-{
-	if (ac == 1)
-	{
-		ft_printf("%s\n", farm->file);
-		ants_moving(farm);
-	}
-	else if (ac == 2 && ft_strcmp(av[1], "-p") == 0)
-	{
-		ft_printf("%s\n", farm->file);
-		ft_printf("\n");
-		showroomslst(farm->roomslst, farm->id_start, farm->id_end);
-		show_ways(farm->all_ways, farm->roomslst);
-		show_top(farm->top, farm->roomslst);
-		ants_moving(farm);
-	}
-	else
-		ft_printf("Error: wrong arguments\n");
-}
-
 void	showroomslst(t_roomslst *roomslst, int id_start, int id_end)
 {
 	t_roomslst *room;
@@ -90,7 +70,7 @@ void	show_top(t_top *top, t_roomslst *roomslst)
 	int i;
 
 	ft_printf("\t\033[32;1mTOP\n\n");
-	ft_printf("STEPS = %d\nSIZE = %d\n", top->steps, top->size);
+	ft_printf("STEPS = %lld\nSIZE = %d\n", top->steps, top->size);
 	i = 0;
 	while (i < top->size)
 	{
