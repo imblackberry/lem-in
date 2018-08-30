@@ -41,7 +41,11 @@ void	moving_in_each_way(t_way *way, int i_way, int *ants_i, int *mov_size)
 		{
 			if (*ants_i <= 0)
 				way->ants_moving[i] = -1;
+<<<<<<< HEAD
 			else if (i + 1 < *mov_size && way->ants_moving[i + 1] == 0)
+=======
+			else if (way->ants_moving[i + 1] == 0)
+>>>>>>> 7dfd3d22f5ad880fc5e7e3ad0237e59fbe197678
 				way->ants_moving[i] = i_way + 1;
 			else
 				way->ants_moving[i] += *mov_size;
